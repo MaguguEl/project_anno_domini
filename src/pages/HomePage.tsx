@@ -1,16 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Shield, Calendar, Users, FileText, BookOpen, MessageSquare, List, ChevronLeft, ChevronRight, ArrowRight, Quote, User, Cake, Cross, Star, Mail, Send, Search, ChevronDown, Library } from 'lucide-react';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Shield, Calendar, Users, FileText, BookOpen, MessageSquare, ChevronLeft, ChevronRight, ArrowRight, Quote, User, Cake, Cross, Star, Mail, Send, Search, ChevronDown, Library, Check } from 'lucide-react';
+import { useData } from '../context/DataContext';
 
 // Search Component 
 const SearchBox = () => {
   const [query, setQuery] = useState('');
-  const navigate = useNavigate();
   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (query.trim()) {
-      navigate(`/search?q=${encodeURIComponent(query.trim())}`);
+      console.log('Search:', query);
       setQuery('');
     }
   };
@@ -37,15 +36,14 @@ const SearchBox = () => {
 // Navigation Button Component 
 function NavButton({ icon, title, to }: { icon: React.ReactNode; title: string; to: string }) {
   return (
-    <Link
-      to={to}
-      className="bg-white rounded-xl p-3 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col items-center justify-center text-center border border-gray-100 hover:border-[#8b2332]/20 min-h-[80px]"
+    <div
+      className="bg-white rounded-xl p-3 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col items-center justify-center text-center border border-gray-100 hover:border-[#8b2332]/20 min-h-[80px] cursor-pointer"
     >
       <div className="text-[#8b2332] mb-2 group-hover:scale-110 transition-transform duration-300">
         {icon}
       </div>
       <h3 className="text-xs font-medium text-gray-900 group-hover:text-[#8b2332] transition-colors duration-300 leading-tight px-1">{title}</h3>
-    </Link>
+    </div>
   );
 }
 
@@ -108,7 +106,7 @@ const StickyRibbon = () => {
 const TimelineDisplay = ({ events }: { events: any[] }) => {
   return (
     <div className="space-y-3">
-      {events.map((event, index) => (
+      {events.map((event) => (
         <div key={event.id} className="flex gap-3 p-3 rounded-lg bg-gray-50">
           <div className="flex-shrink-0 w-12 text-center">
             <div className="text-base font-bold" style={{ color: '#8b2332' }}>{event.year}</div>
@@ -171,7 +169,7 @@ const HeroSection = () => {
           title="Eras"
           to="/eras"
         />
-          <NavButton
+        <NavButton
           icon={<MessageSquare className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />}
           title="Quotes"
           to="/quotes"
@@ -199,37 +197,61 @@ const HeroSection = () => {
 
 // Main Content Section 
 const MainContentSection = () => {
-  const [currentDate, setCurrentDate] = useState({ day: 19, month: 6 });
+  const data = useData();
+  const [currentDate, setCurrentDate] = useState(() => {
+    const now = new Date();
+    return { day: now.getDate(), month: now.getMonth() + 1 };
+  });
   const [email, setEmail] = useState('');
   const [isSubscribed, setIsSubscribed] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Mock data
-  const todayEvents = [
-    { id: 1, year: 1560, title: 'Scottish Reformation Parliament convenes', description: 'The parliament met to reform the Scottish church.' },
-    { id: 2, year: 1831, title: 'Charles Spurgeon born', description: 'The "Prince of Preachers" was born in Kelvedon, Essex.' }
-  ];
+  // Get real data from context
+  const todayEvents = useMemo(() => 
+    data.getEventsByDay(currentDate.month, currentDate.day),
+    [data, currentDate]
+  );
 
-  const quoteOfTheDay = {
-    text: 'The church is not a gallery for the exhibition of eminent Christians, but a school for the education of imperfect ones.',
-    author: 'Charles Spurgeon',
-    source: 'Sermons',
-    context: 'Preached in 1857'
-  };
+  // Get quote of the day by selecting from all quotes based on current date
+  const quoteOfTheDay = useMemo(() => {
+    const allQuotes = data.figures.flatMap(figure => figure.quotes || []);
+    if (allQuotes.length === 0) {
+      return {
+        text: 'The glory of God is a living man; and the life of man consists in beholding God.',
+        author: 'Irenaeus of Lyon',
+        source: 'Against Heresies',
+        context: 'Irenaeus expressing the relationship between God\'s glory and human flourishing.'
+      };
+    }
+    
+    // Use day of year to select a consistent quote for the day
+    const now = new Date();
+    const dayOfYear = Math.floor((now.getTime() - new Date(now.getFullYear(), 0, 0).getTime()) / 86400000);
+    const quoteIndex = dayOfYear % allQuotes.length;
+    const selectedQuote = allQuotes[quoteIndex];
+    
+    // Find the figure who said this quote
+    const figure = data.figures.find(f => f.id === selectedQuote.figureId);
+    
+    return {
+      text: selectedQuote.text,
+      author: figure?.name || 'Unknown',
+      source: selectedQuote.source,
+      context: selectedQuote.context
+    };
+  }, [data]);
 
-  const bornToday = [
-    { id: 1, name: 'Charles Spurgeon', birthYear: 1831, image: '/spurgeon.jpg', roles: ['Preacher', 'Theologian'] }
-  ];
+  const bornToday = useMemo(() => 
+    data.getFiguresByBirthDay(currentDate.month, currentDate.day),
+    [data, currentDate]
+  );
 
-  const diedToday = [
-    { id: 2, name: 'Martin Luther', deathYear: 1546, image: '/luther.jpg', roles: ['Reformer', 'Theologian'] }
-  ];
+  const diedToday = useMemo(() => 
+    data.getFiguresByDeathDay(currentDate.month, currentDate.day),
+    [data, currentDate]
+  );
 
-  const eras = [
-    { id: 1, name: 'Early Church', startYear: '33', endYear: '500', volume: 1, description: 'The apostolic era through the early church fathers' },
-    { id: 2, name: 'Medieval Period', startYear: '500', endYear: '1500', volume: 2, description: 'The development of Western Christianity' },
-    { id: 3, name: 'Reformation', startYear: '1500', endYear: '1700', volume: 3, description: 'Protestant Reformation and Catholic Counter-Reformation' }
-  ];
+  const eras = data.eras;
 
   const months = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
 
@@ -239,6 +261,7 @@ const MainContentSection = () => {
       let newMonth = prev.month;
       if (newDay < 1) {
         newMonth = prev.month - 1;
+        if (newMonth < 1) newMonth = 12;
         newDay = 31; // Simplified
       }
       return { day: newDay, month: newMonth };
@@ -251,6 +274,7 @@ const MainContentSection = () => {
       let newMonth = prev.month;
       if (newDay > 31) {
         newMonth = prev.month + 1;
+        if (newMonth > 12) newMonth = 1;
         newDay = 1;
       }
       return { day: newDay, month: newMonth };
@@ -315,10 +339,8 @@ const MainContentSection = () => {
                   {todayEvents.length === 0 ? (
                     <div className="text-center py-8" style={{ color: '#725d4f' }}>
                       <p className="text-sm">No historical events recorded for this day.</p>
-                      <p className="mt-2">
-                        <Link to="/timeline" className="hover:underline text-sm" style={{ color: '#725d4f' }}>
-                          Browse the full timeline →
-                        </Link>
+                      <p className="mt-2 text-sm hover:underline cursor-pointer" style={{ color: '#725d4f' }}>
+                        Browse the full timeline →
                       </p>
                     </div>
                   ) : (
@@ -328,9 +350,9 @@ const MainContentSection = () => {
                   )}
                   
                   <div className="mt-4 text-right">
-                    <Link to="/timeline" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
+                    <div className="flex items-center justify-end gap-1 hover:underline text-sm cursor-pointer" style={{ color: '#725d4f' }}>
                       View full timeline <ArrowRight size={14} />
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -365,9 +387,9 @@ const MainContentSection = () => {
                   </blockquote>
                   
                   <div className="text-right">
-                    <Link to="/quotes" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
+                    <div className="flex items-center justify-end gap-1 hover:underline text-sm cursor-pointer" style={{ color: '#725d4f' }}>
                       Explore more quotes <ArrowRight size={14} />
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -392,19 +414,17 @@ const MainContentSection = () => {
                         </h3>
                       </div>
                       <div className="space-y-3">
-                        {bornToday.map((figure, index) => (
+                        {bornToday.map((figure) => (
                           <div 
                             key={figure.id}
-                            className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                           >
                             <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
                               <User className="w-6 h-6" style={{ color: '#725d4f' }} />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="font-medium mb-1 text-sm" style={{ color: '#725d4f' }}>
-                                <Link to={`/figures/${figure.id}`} className="hover:underline">
-                                  {figure.name}
-                                </Link>
+                              <h4 className="font-medium mb-1 text-sm hover:underline" style={{ color: '#725d4f' }}>
+                                {figure.name}
                               </h4>
                               <p className="text-xs mb-1" style={{ color: '#725d4f' }}>
                                 Born in {figure.birthYear}
@@ -437,19 +457,17 @@ const MainContentSection = () => {
                         </h3>
                       </div>
                       <div className="space-y-3">
-                        {diedToday.map((figure, index) => (
+                        {diedToday.map((figure) => (
                           <div 
                             key={figure.id}
-                            className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors"
+                            className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
                           >
                             <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
                               <User className="w-6 h-6" style={{ color: '#725d4f' }} />
                             </div>
                             <div className="flex-1 min-w-0">
-                              <h4 className="font-medium mb-1 text-sm" style={{ color: '#725d4f' }}>
-                                <Link to={`/figures/${figure.id}`} className="hover:underline">
-                                  {figure.name}
-                                </Link>
+                              <h4 className="font-medium mb-1 text-sm hover:underline" style={{ color: '#725d4f' }}>
+                                {figure.name}
                               </h4>
                               <p className="text-xs mb-1" style={{ color: '#725d4f', opacity: 0.7 }}>
                                 Died in {figure.deathYear}
@@ -475,18 +493,16 @@ const MainContentSection = () => {
                   {bornToday.length === 0 && diedToday.length === 0 && (
                     <div className="text-center py-6" style={{ color: '#725d4f' }}>
                       <p className="text-sm">No notable figures were born or died on this day.</p>
-                      <p className="mt-2">
-                        <Link to="/figures" className="hover:underline text-sm" style={{ color: '#725d4f' }}>
-                          Browse historical figures →
-                        </Link>
+                      <p className="mt-2 text-sm hover:underline cursor-pointer" style={{ color: '#725d4f' }}>
+                        Browse historical figures →
                       </p>
                     </div>
                   )}
                   
                   <div className="mt-4 text-right">
-                    <Link to="/figures" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
+                    <div className="flex items-center justify-end gap-1 hover:underline text-sm cursor-pointer" style={{ color: '#725d4f' }}>
                       View all figures <ArrowRight size={14} />
-                    </Link>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -502,11 +518,10 @@ const MainContentSection = () => {
                   </h2>
                 </div>
                 <div className="space-y-2">
-                  {eras.map((era, index) => (
+                  {eras.slice(0, 3).map((era) => (
                     <div key={era.id}>
-                      <Link 
-                        to={`/eras/${era.id}`}
-                        className="block p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-[#8b2332]/20"
+                      <div 
+                        className="block p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-[#8b2332]/20 cursor-pointer"
                       >
                         <div className="flex justify-between items-start mb-1">
                           <div className="font-medium text-sm" style={{ color: '#725d4f' }}>
@@ -524,19 +539,18 @@ const MainContentSection = () => {
                             ? `${era.description.substring(0, 60)}...` 
                             : era.description}
                         </p>
-                      </Link>
+                      </div>
                     </div>
                   ))}
                 </div>
                 
                 <div className="mt-4 pt-4 border-t border-gray-300">
-                  <Link 
-                    to="/eras" 
-                    className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-[#8b2332] hover:bg-[#6d1a27] text-white rounded-lg transition-colors text-sm"
+                  <div 
+                    className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-[#8b2332] hover:bg-[#6d1a27] text-white rounded-lg transition-colors text-sm cursor-pointer"
                   >
                     <BookOpen size={16} />
                     View All Eras
-                  </Link>
+                  </div>
                 </div>
               </div>
             </div>
@@ -544,88 +558,119 @@ const MainContentSection = () => {
         </div>
       </div>
 
-      {/* Newsletter Subscription Section  */}
-      <div className="py-12">
+      {/* Newsletter Subscription Section */}
+      <div className="py-16 bg-gradient-to-br from-[#8b2332] to-[#6d1a27]">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="max-w-4xl mx-auto text-center p-6 rounded-lg shadow-lg bg-white">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Mail className="w-6 h-6" style={{ color: '#8b2332' }} />
-              <h2 className="text-2xl font-serif" style={{ color: '#725d4f' }}>
+          <div className="max-w-5xl mx-auto">
+            {/* Header */}
+            <div className="text-center mb-12">
+              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-full mb-6">
+                <Mail className="w-8 h-8 text-white" />
+              </div>
+              <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
                 Stay Connected to History
               </h2>
+              <p className="text-lg text-white/90 max-w-2xl mx-auto">
+                Join thousands of history enthusiasts receiving daily insights from church history delivered straight to your inbox.
+              </p>
             </div>
             
-            <p className="text-lg mb-6 max-w-2xl mx-auto" style={{ color: '#725d4f' }}>
-              Get daily insights from church history delivered to your inbox.
-            </p>
-            
-            {isSubscribed ? (
-              <div className="bg-green-100 p-4 rounded-lg max-w-md mx-auto" style={{ color: '#725d4f' }}>
-                <div className="flex items-center justify-center gap-2 mb-1">
-                  <Send className="w-4 h-4" />
-                  <span className="font-semibold text-sm">Successfully Subscribed!</span>
-                </div>
-                <p className="text-xs">
-                  Thank you for joining our community.
-                </p>
-              </div>
-            ) : (
-              <form onSubmit={handleSubscribe} className="max-w-md mx-auto">
-                <div className="flex flex-col gap-3">
-                  <div className="flex-1">
-                    <input
-                      type="email"
-                      value={email}
-                      onChange={(e) => setEmail(e.target.value)}
-                      placeholder="Enter your email address"
-                      required
-                      className="w-full py-3 px-4 rounded-lg border border-gray-300 bg-white text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-[#8b2332] placeholder-gray-500"
-                    />
+            {/* Form Section */}
+            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+              {isSubscribed ? (
+                <div className="text-center py-8">
+                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
+                    <Check className="w-8 h-8 text-green-600" />
                   </div>
+                  <h3 className="text-2xl font-serif text-gray-900 mb-2">
+                    Welcome Aboard!
+                  </h3>
+                  <p className="text-gray-600 mb-6">
+                    Thank you for joining our community. Check your inbox for a confirmation email.
+                  </p>
                   <button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="flex items-center justify-center gap-2 px-6 py-3 bg-[#8b2332] hover:bg-[#6d1a27] disabled:bg-gray-400 text-white font-semibold rounded-lg transition-colors duration-300 whitespace-nowrap text-base"
+                    onClick={() => setIsSubscribed(false)}
+                    className="text-[#8b2332] hover:underline text-sm"
                   >
-                    {isSubmitting ? (
-                      <>
-                        <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
-                        <span>Subscribing...</span>
-                      </>
-                    ) : (
-                      <>
-                        <Send size={16} />
-                        <span>Subscribe</span>
-                      </>
-                    )}
+                    Subscribe another email
                   </button>
                 </div>
-                
-                <p className="text-xs mt-3" style={{ color: '#725d4f' }}>
-                  Join over 10,000 history enthusiasts. Unsubscribe anytime.
-                </p>
-              </form>
-            )}
-            
-            <div className="mt-6 grid grid-cols-1 gap-4 text-left">
-              <div className="rounded-lg p-3 bg-gray-50">
-                <h3 className="font-semibold mb-1 text-sm" style={{ color: '#725d4f' }}>Daily Insights</h3>
-                <p className="text-xs" style={{ color: '#725d4f' }}>
-                  Receive curated historical events and figures from this day in church history.
-                </p>
-              </div>
-              <div className="rounded-lg p-3 bg-gray-50">
-                <h3 className="font-semibold mb-1 text-sm" style={{ color: '#725d4f' }}>Weekly Deep Dives</h3>
-                <p className="text-xs" style={{ color: '#725d4f' }}>
-                  Explore detailed analyses of significant periods and movements in Christianity.
-                </p>
-              </div>
-              <div className="rounded-lg p-3 bg-gray-50">
-                <h3 className="font-semibold mb-1 text-sm" style={{ color: '#725d4f' }}>Exclusive Content</h3>
-                <p className="text-xs" style={{ color: '#725d4f' }}>
-                  Access subscriber-only articles and resources from leading church historians.
-                </p>
-              </div>
+              ) : (
+                <>
+                  <form onSubmit={handleSubscribe} className="mb-8">
+                    <div className="relative">
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email address"
+                        required
+                        className="w-full py-4 pl-6 pr-36 rounded-full border-2 border-[#8b2332]/30 bg-white text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-[#8b2332] focus:border-[#8b2332] placeholder-gray-400"
+                      />
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center gap-2 px-6 py-3 bg-[#8b2332] hover:bg-[#6d1a27] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold rounded-full transition-all duration-300 whitespace-nowrap text-sm shadow-lg hover:shadow-xl"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-4 h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            <span>Subscribing...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Send size={16} />
+                            <span>Subscribe</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
+                  </form>
+                  
+                  {/* Benefits Section */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-[#8b2332]/10 rounded-full flex items-center justify-center">
+                        <Calendar className="w-4 h-4 text-[#8b2332]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Daily Insights</h4>
+                        <p className="text-sm text-gray-600">
+                          Discover historical events that happened on this day throughout church history.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-[#8b2332]/10 rounded-full flex items-center justify-center">
+                        <Quote className="w-4 h-4 text-[#8b2332]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Inspiring Quotes</h4>
+                        <p className="text-sm text-gray-600">
+                          Read wisdom from church fathers, reformers, and notable Christian figures.
+                        </p>
+                      </div>
+                    </div>
+                    
+                    <div className="flex items-start gap-3">
+                      <div className="flex-shrink-0 w-8 h-8 bg-[#8b2332]/10 rounded-full flex items-center justify-center">
+                        <Users className="w-4 h-4 text-[#8b2332]" />
+                      </div>
+                      <div>
+                        <h4 className="font-semibold text-gray-900 mb-1">Notable Figures</h4>
+                        <p className="text-sm text-gray-600">
+                          Learn about influential theologians, martyrs, and leaders who shaped Christianity.
+                        </p>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  <p className="text-center text-sm text-gray-500 mt-6">
+                    We respect your privacy. Unsubscribe at any time.
+                  </p>
+                </>
+              )}
             </div>
           </div>
         </div>
@@ -634,16 +679,12 @@ const MainContentSection = () => {
   );
 };
 
-const HomePage: React.FC = () => {
+// Main App Component
+export default function App() {
   return (
-    <div className="min-h-screen flex flex-col">
-      {/* Full Screen Hero Section */}
+    <div className="min-h-screen bg-[#ebe9e1]">
       <HeroSection />
-      
-      {/* Main Content Section with Gray Background */}
       <MainContentSection />
     </div>
   );
-};
-
-export default HomePage;
+}
