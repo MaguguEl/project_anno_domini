@@ -18,6 +18,8 @@ export interface Figure {
   id: string;
   name: string;
   image: string;
+  era: string; 
+  location: string; 
   birthDate?: Date | string;
   birthYear?: number;
   birthMonth?: number;

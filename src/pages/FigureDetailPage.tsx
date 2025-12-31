@@ -11,16 +11,16 @@ const FigureDetailPage: React.FC = () => {
   
   if (!figure) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-navy-900 py-12">
-        <div className="container-max">
-          <div className="card p-8 text-center">
-            <h1 className="text-2xl font-serif text-burgundy-700 dark:text-burgundy-300 mb-4">
+      <div className="min-h-screen bg-white dark:bg-slate-900 py-12">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center py-16">
+            <h1 className="text-3xl font-serif text-red-900 dark:text-red-300 mb-4">
               Figure Not Found
             </h1>
-            <p className="text-navy-600 dark:text-navy-300 mb-6">
+            <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">
               The historical figure you're looking for doesn't exist or has been removed.
             </p>
-            <Link to="/figures" className="btn-primary">
+            <Link to="/figures" className="inline-block px-6 py-3 bg-red-900 text-white rounded-lg hover:bg-red-800 transition-colors">
               Browse All Figures
             </Link>
           </div>
@@ -34,41 +34,38 @@ const FigureDetailPage: React.FC = () => {
   const relatedDocs = relatedData.documents || [];
   
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-navy-900">
-      {/* Header */}
-      <div className="bg-burgundy-800 dark:bg-burgundy-900 text-white">
-        <div className="container-max py-12">
-          <div className="flex items-start gap-8">
-            <Link to="/figures" className="text-white/80 hover:text-white mt-2">
-              <ArrowLeft size={24} />
-            </Link>
+    <div className="min-h-screen bg-white dark:bg-slate-900">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-b from-red-900 to-red-800 dark:from-red-950 dark:to-red-900 text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <Link to="/figures" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors">
+            <ArrowLeft size={20} />
+            <span>Back to Figures</span>
+          </Link>
+          
+          <div className="flex flex-col md:flex-row gap-12 items-start pb-12">
+            <div className="w-64 h-80 rounded-lg overflow-hidden shadow-2xl flex-shrink-0 bg-slate-800">
+              <img 
+                src={figure.image} 
+                alt={figure.name}
+                className="w-full h-full object-cover"
+              />
+            </div>
             
-            <div className="flex-1">
-              <div className="flex flex-col md:flex-row gap-8 items-start">
-                <div className="w-48 h-48 rounded-lg overflow-hidden bg-navy-800">
-                  <img 
-                    src={figure.image} 
-                    alt={figure.name}
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-                
-                <div className="flex-1">
-                  <div className="text-burgundy-200 mb-2">
-                    {formatLifespan(figure.birthYear, figure.deathYear)}
-                  </div>
-                  <h1 className="text-4xl font-serif mb-4">{figure.name}</h1>
-                  <div className="flex flex-wrap gap-2 mb-6">
-                    {figure.roles.map(role => (
-                      <span 
-                        key={role}
-                        className="px-3 py-1 bg-white/10 rounded-full text-sm"
-                      >
-                        {role}
-                      </span>
-                    ))}
-                  </div>
-                </div>
+            <div className="flex-1 pt-4">
+              <div className="text-red-200 text-lg mb-3 tracking-wide">
+                {formatLifespan(figure.birthYear, figure.deathYear)}
+              </div>
+              <h1 className="text-5xl md:text-6xl font-serif mb-6 leading-tight">{figure.name}</h1>
+              <div className="flex flex-wrap gap-3">
+                {figure.roles.map(role => (
+                  <span 
+                    key={role}
+                    className="px-4 py-2 bg-white/20 backdrop-blur-sm rounded-full text-sm font-medium"
+                  >
+                    {role}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -76,53 +73,50 @@ const FigureDetailPage: React.FC = () => {
       </div>
       
       {/* Main Content */}
-      <div className="container-max py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
-          {/* Main Content */}
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
+          {/* Main Biography Column */}
           <div className="lg:col-span-2">
-            <div className="card p-6 mb-8">
-              <h2 className="text-2xl font-serif text-burgundy-700 dark:text-burgundy-300 mb-4">
+            <article className="prose prose-lg max-w-none">
+              <h2 className="text-3xl font-serif text-red-900 dark:text-red-300 mb-6 pb-3 border-b-2 border-red-200 dark:border-red-800">
                 Biography
               </h2>
-              <div className="prose prose-navy dark:prose-invert max-w-none">
-                <p className="text-navy-700 dark:text-navy-300 leading-relaxed">
-                  {figure.description}
-                </p>
+              <div className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg space-y-4">
+                <p>{figure.description}</p>
+                
                 {figure.influence && (
-                  <>
-                    <h3 className="text-xl font-serif text-burgundy-700 dark:text-burgundy-300 mt-6 mb-3">
+                  <div className="mt-8">
+                    <h3 className="text-2xl font-serif text-red-900 dark:text-red-300 mb-4">
                       Historical Influence
                     </h3>
-                    <p className="text-navy-700 dark:text-navy-300 leading-relaxed">
-                      {figure.influence}
-                    </p>
-                  </>
+                    <p>{figure.influence}</p>
+                  </div>
                 )}
               </div>
-            </div>
+            </article>
             
-            {/* Notable Quotes */}
+            {/* Notable Quotes Section */}
             {figure.quotes.length > 0 && (
-              <div className="card p-6">
-                <div className="flex items-center gap-2 mb-6">
-                  <Quote className="w-5 h-5 text-burgundy-700 dark:text-burgundy-300" />
-                  <h2 className="text-2xl font-serif text-burgundy-700 dark:text-burgundy-300">
+              <div className="mt-16">
+                <div className="flex items-center gap-3 mb-8">
+                  <Quote className="w-6 h-6 text-red-700 dark:text-red-300" />
+                  <h2 className="text-3xl font-serif text-red-900 dark:text-red-300">
                     Notable Quotes
                   </h2>
                 </div>
-                <div className="space-y-6">
+                <div className="space-y-8">
                   {figure.quotes.map(quote => (
                     <blockquote 
                       key={quote.id}
-                      className="border-l-4 border-burgundy-300 dark:border-burgundy-700 pl-4"
+                      className="border-l-4 border-red-400 dark:border-red-600 pl-6 py-2"
                     >
-                      <p className="text-lg italic text-navy-700 dark:text-navy-300 mb-2">
+                      <p className="text-xl italic text-slate-800 dark:text-slate-200 mb-3 leading-relaxed">
                         "{quote.text}"
                       </p>
-                      <footer className="text-sm text-navy-600 dark:text-navy-400">
-                        <cite>{quote.source}</cite>
+                      <footer className="text-slate-600 dark:text-slate-400">
+                        <cite className="not-italic font-medium">— {quote.source}</cite>
                         {quote.context && (
-                          <p className="mt-1">{quote.context}</p>
+                          <p className="mt-2 text-sm">{quote.context}</p>
                         )}
                       </footer>
                     </blockquote>
@@ -133,61 +127,61 @@ const FigureDetailPage: React.FC = () => {
           </div>
           
           {/* Sidebar */}
-          <div className="space-y-8">
+          <div className="space-y-10">
             {/* Related Events */}
             {relatedEvents.length > 0 && (
-              <div className="card p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <Calendar className="w-5 h-5 text-burgundy-700 dark:text-burgundy-300" />
-                  <h2 className="text-xl font-serif text-burgundy-700 dark:text-burgundy-300">
+              <aside>
+                <div className="flex items-center gap-2 mb-6 pb-2 border-b-2 border-red-200 dark:border-red-800">
+                  <Calendar className="w-5 h-5 text-red-700 dark:text-red-300" />
+                  <h2 className="text-2xl font-serif text-red-900 dark:text-red-300">
                     Key Events
                   </h2>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {relatedEvents.map(event => (
                     <Link 
                       key={event.id}
                       to={`/events/${event.id}`}
-                      className="block p-3 rounded-lg hover:bg-navy-50 dark:hover:bg-navy-700 transition-colors"
+                      className="block py-3 px-4 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-l-2 border-red-300 dark:border-red-700"
                     >
-                      <div className="font-medium text-navy-800 dark:text-navy-100">
+                      <div className="font-medium text-slate-900 dark:text-slate-100 mb-1">
                         {event.title}
                       </div>
-                      <div className="text-sm text-navy-600 dark:text-navy-300">
+                      <div className="text-sm text-slate-600 dark:text-slate-400">
                         {event.year}
                       </div>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </aside>
             )}
             
             {/* Related Documents */}
             {relatedDocs.length > 0 && (
-              <div className="card p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <BookOpen className="w-5 h-5 text-burgundy-700 dark:text-burgundy-300" />
-                  <h2 className="text-xl font-serif text-burgundy-700 dark:text-burgundy-300">
+              <aside>
+                <div className="flex items-center gap-2 mb-6 pb-2 border-b-2 border-red-200 dark:border-red-800">
+                  <BookOpen className="w-5 h-5 text-red-700 dark:text-red-300" />
+                  <h2 className="text-2xl font-serif text-red-900 dark:text-red-300">
                     Writings & Documents
                   </h2>
                 </div>
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {relatedDocs.map(doc => (
                     <Link 
                       key={doc.id}
                       to={`/documents/${doc.id}`}
-                      className="block p-3 rounded-lg hover:bg-navy-50 dark:hover:bg-navy-700 transition-colors"
+                      className="block py-3 px-4 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-l-2 border-red-300 dark:border-red-700"
                     >
-                      <div className="font-medium text-navy-800 dark:text-navy-100">
+                      <div className="font-medium text-slate-900 dark:text-slate-100 mb-1">
                         {doc.title}
                       </div>
-                      <div className="text-sm text-navy-600 dark:text-navy-300">
+                      <div className="text-sm text-slate-600 dark:text-slate-400">
                         {doc.year}
                       </div>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </aside>
             )}
           </div>
         </div>
