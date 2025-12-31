@@ -47,6 +47,13 @@ export interface Document {
   events: string[];
   people: string[];
   era: Era;
+  externalUrl?: string;           
+  hostedOn?: string;           
+  downloadFormats?: ('pdf' | 'epub' | 'txt')[]; 
+    type?: 'creed' | 'confession' | 'treatise' | 'sermon' | 'letter' | 'book' | 'thesis' | 'declaration' | 'covenant' | 'manual'; 
+  category?: 'primary' | 'secondary' | 'historical' | 'theological'; 
+  tags?: string[];                
+  summary?: string;              
 }
 
 export interface EraCharacteristics {

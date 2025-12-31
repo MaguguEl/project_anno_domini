@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useData } from '../context/DataContext';
 import DocumentCard from '../components/DocumentCard';
 import SearchBox from '../components/SearchBox';
+import { Filter } from 'lucide-react';
 
 const DocumentsPage: React.FC = () => {
   const { eras, documents, getDocumentsByEra } = useData();
@@ -35,31 +36,33 @@ const DocumentsPage: React.FC = () => {
       </div>
       
       <div className="container-max py-8">
-        <div className="rounded-lg shadow-md p-6 mb-8" style={{ backgroundColor: 'var(--global-bg-secondary)' }}>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="md:col-span-2">
-              <h2 className="text-xl font-serif mb-4 text-navy-800 dark:text-navy-100">
-                Filter Documents
-              </h2>
-              
-              <div>
-                <label htmlFor="era-filter" className="block text-sm font-medium text-navy-600 dark:text-navy-300 mb-2">
-                  Filter by Era
-                </label>
-                <select
-                  id="era-filter"
-                  className="w-full sm:w-2/3 p-2 rounded-md border border-navy-200 bg-white dark:bg-navy-700 dark:border-navy-600 dark:text-navy-100"
-                  value={selectedEra}
-                  onChange={(e) => setSelectedEra(e.target.value)}
-                >
-                  <option value="all">All Eras</option>
-                  {eras.map(era => (
-                    <option key={era.id} value={era.id}>
-                      {era.name} ({era.startYear}-{era.endYear})
-                    </option>
-                  ))}
-                </select>
-              </div>
+        {/* Filter Section */}
+        <div className="mb-8 border-l-4 border-navy-700 dark:border-navy-300 bg-white dark:bg-navy-800 p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <Filter className="w-5 h-5 text-navy-700 dark:text-navy-300" />
+            <h2 className="text-xl font-serif text-navy-800 dark:text-navy-100">
+              Filter Documents
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div>
+              <label htmlFor="era-filter" className="block text-sm font-medium text-navy-600 dark:text-navy-300 mb-2">
+                Filter by Historical Era
+              </label>
+              <select
+                id="era-filter"
+                className="w-full p-3 rounded-md border-2 border-navy-200 bg-white dark:bg-navy-700 dark:border-navy-600 dark:text-navy-100 focus:border-navy-500 focus:outline-none"
+                value={selectedEra}
+                onChange={(e) => setSelectedEra(e.target.value)}
+              >
+                <option value="all">All Eras</option>
+                {eras.map(era => (
+                  <option key={era.id} value={era.id}>
+                    {era.name} ({era.startYear}-{era.endYear})
+                  </option>
+                ))}
+              </select>
             </div>
             
             <div>
