@@ -1,0 +1,382 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Source+Sans+Pro:wght@300;400;600&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --color-burgundy-50: #fdf2f2;
+    --color-burgundy-100: #fde4e4;
+    --color-burgundy-200: #fbd0d0;
+    --color-burgundy-300: #f7a7a7;
+    --color-burgundy-400: #ee7171;
+    --color-burgundy-500: #d42e2e;
+    --color-burgundy-600: #b71c1c;
+    --color-burgundy-700: #8b0000;
+    --color-burgundy-800: #770000;
+    --color-burgundy-900: #620000;
+    
+    --color-navy-50: #f0f4f8;
+    --color-navy-100: #e0e9f1;
+    --color-navy-200: #c2d3e3;
+    --color-navy-300: #93b2d0;
+    --color-navy-400: #5d87b7;
+    --color-navy-500: #3b5f9a;
+    --color-navy-600: #2e4c7d;
+    --color-navy-700: #253c63;
+    --color-navy-800: #14213d;
+    --color-navy-900: #0d1829;
+    
+    --color-gold-50: #fefbec;
+    --color-gold-100: #fef6d3;
+    --color-gold-200: #fdedac;
+    --color-gold-300: #fae079;
+    --color-gold-400: #f0cc47;
+    --color-gold-500: #e6b325;
+    --color-gold-600: #cb911c;
+    --color-gold-700: #a86c1a;
+    --color-gold-800: #8a541b;
+    --color-gold-900: #74461a;
+
+    /* Global background colors - Light Mode */
+    --tw-bg-opacity: 1;
+    --global-bg: rgb(247 244 239 / var(--tw-bg-opacity));
+    --global-bg-secondary: rgb(235 233 225 / var(--tw-bg-opacity));
+  }
+
+  .dark {
+    --color-burgundy-900: #fdf2f2;
+    --color-burgundy-800: #fde4e4;
+    --color-burgundy-700: #fbd0d0;
+    --color-burgundy-600: #f7a7a7;
+    --color-burgundy-500: #ee7171;
+    --color-burgundy-400: #d42e2e;
+    --color-burgundy-300: #b71c1c;
+    --color-burgundy-200: #8b0000;
+    --color-burgundy-100: #770000;
+    --color-burgundy-50: #620000;
+    
+    --color-navy-900: #f0f4f8;
+    --color-navy-800: #e0e9f1;
+    --color-navy-700: #c2d3e3;
+    --color-navy-600: #93b2d0;
+    --color-navy-500: #5d87b7;
+    --color-navy-400: #3b5f9a;
+    --color-navy-300: #2e4c7d;
+    --color-navy-200: #253c63;
+    --color-navy-100: #14213d;
+    --color-navy-50: #0d1829;
+    
+    --color-gold-900: #fefbec;
+    --color-gold-800: #fef6d3;
+    --color-gold-700: #fdedac;
+    --color-gold-600: #fae079;
+    --color-gold-500: #f0cc47;
+    --color-gold-400: #e6b325;
+    --color-gold-300: #cb911c;
+    --color-gold-200: #a86c1a;
+    --color-gold-100: #8a541b;
+    --color-gold-50: #74461a;
+
+    /* Global background colors - Dark Mode */
+    --global-bg: #0d1829;
+    --global-bg-secondary: #14213d;
+  }
+}
+
+/* Global background application to entire site */
+html {
+  background-color: var(--global-bg);
+  min-height: 100vh;
+}
+
+body {
+  background-color: var(--global-bg);
+  color: var(--color-navy-800);
+  font-family: 'Source Sans Pro', sans-serif;
+  line-height: 1.5;
+  min-height: 100vh;
+  transition: background-color 0.3s ease;
+}
+
+#root {
+  background-color: var(--global-bg);
+  min-height: 100vh;
+}
+
+.dark body {
+  color: var(--color-navy-100);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Playfair Display', serif;
+  line-height: 1.2;
+}
+
+.timeline {
+  @apply relative pl-8 border-l-2 border-burgundy-700 dark:border-burgundy-300;
+}
+
+.timeline-dot {
+  @apply absolute -left-[9px] w-4 h-4 rounded-full bg-burgundy-700 dark:bg-burgundy-300;
+}
+
+.container-max {
+  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.card {
+  background-color: var(--global-bg-secondary);
+  @apply rounded-lg overflow-hidden shadow-md transition-all duration-300;
+}
+
+.dark .card {
+  background-color: var(--global-bg-secondary);
+}
+
+.btn-primary {
+  @apply bg-burgundy-700 hover:bg-burgundy-800 text-white px-4 py-2 rounded-md transition-colors duration-300 dark:bg-burgundy-200 dark:hover:bg-burgundy-300 dark:text-navy-900;
+}
+
+.btn-secondary {
+  @apply bg-navy-800 hover:bg-navy-900 text-white px-4 py-2 rounded-md transition-colors duration-300 dark:bg-navy-100 dark:hover:bg-navy-200 dark:text-navy-900;
+}
+
+.btn-accent {
+  @apply bg-gold-500 hover:bg-gold-600 text-navy-900 px-4 py-2 rounded-md transition-colors duration-300;
+}
+
+.link {
+  @apply text-burgundy-700 hover:text-burgundy-600 underline underline-offset-2 dark:text-burgundy-300 dark:hover:text-burgundy-200;
+}
+
+.tab {
+  @apply inline-block px-6 py-3 border-b-2 border-transparent font-medium hover:text-burgundy-700 hover:border-burgundy-400 transition-colors duration-200 dark:hover:text-burgundy-300;
+}
+
+.tab-active {
+  @apply tab border-burgundy-700 text-burgundy-700 dark:border-burgundy-300 dark:text-burgundy-300;
+}
+
+/* Newsletter section background */
+.newsletter-section {
+  background-color: var(--global-bg-secondary);
+}
+
+/* Override any component backgrounds that should follow global theme */
+.bg-slate-50 {
+  background-color: var(--global-bg) !important;
+}
+
+/* Override all white backgrounds to use secondary color */
+.bg-white {
+  background-color: var(--global-bg-secondary) !important;
+}
+
+.dark .bg-white {
+  background-color: var(--global-bg-secondary) !important;
+}
+
+/* Ensure dark mode navy-800 cards also use secondary */
+.dark .bg-navy-800 {
+  background-color: var(--global-bg-secondary) !important;
+}
+.dark .bg-navy-900 {
+  background-color: var(--global-bg) !important;
+}
+
+/* Hide scrollbar for webkit browsers */
+.scrollbar-hide {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;  /* Chrome, Safari and Opera */
+}
+
+/* Hero Carousel Styles */
+.hero-carousel-container {
+  position: relative;
+  width: 100%;
+}
+
+.carousel-wrapper {
+  position: relative;
+  overflow: hidden;
+}
+
+.slides-container {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.carousel-slide {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.slide-background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.slide-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to right, rgba(13, 24, 41, 0.9), rgba(139, 0, 0, 0.9));
+}
+
+.slide-content {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 2rem 0;
+}
+
+.slide-text-content {
+  max-width: 48rem;
+}
+
+.slide-title {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+}
+
+.slide-subtitle {
+  font-family: 'Playfair Display', serif;
+  font-weight: 400;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.slide-description {
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.slide-actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.carousel-navigation {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.carousel-arrow,
+.carousel-indicator,
+.carousel-autoplay-toggle {
+  pointer-events: auto;
+}
+
+.carousel-arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-arrow:hover {
+  transform: scale(1.1);
+}
+
+.carousel-indicators {
+  display: flex;
+  gap: 0.75rem;
+}
+
+.carousel-indicator {
+  width: 0.75rem;
+  height: 0.75rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-indicator:hover {
+  transform: scale(1.2);
+}
+
+.carousel-autoplay-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.carousel-autoplay-toggle:hover {
+  transform: scale(1.1);
+}
+
+/* Responsive carousel adjustments */
+@media (max-width: 768px) {
+  .slide-title {
+    font-size: 2.5rem;
+  }
+  
+  .slide-subtitle {
+    font-size: 1.5rem;
+  }
+  
+  .slide-description {
+    font-size: 1rem;
+  }
+  
+  .slide-actions {
+    flex-direction: column;
+  }
+  
+  .carousel-arrow {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+  
+  .carousel-arrow-prev {
+    left: 1rem;
+  }
+  
+  .carousel-arrow-next {
+    right: 1rem;
+  }
+  
+  .carousel-autoplay-toggle {
+    top: 1rem;
+    right: 1rem;
+  }
+}
