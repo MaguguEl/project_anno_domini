@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Quote, Search, Filter, BookOpen, } from 'lucide-react';
+import { Quote, Search, Filter, BookOpen } from 'lucide-react';
 import { figures } from '../data/figures';
 import { eras } from '../data/eras';
 
@@ -66,7 +66,7 @@ const QuotesPage: React.FC = () => {
         <div className="container-max">
           <div>
             <div className="flex items-center gap-3 mb-4">
-              <h1 className="text-4xl font-serif"> Quotes</h1>
+              <h1 className="text-4xl font-serif">Quotes</h1>
             </div>
             <p className="text-base text-navy-200 max-w-3xl">
               Discover wisdom from the great minds of church history. Explore inspiring quotes 
@@ -78,15 +78,15 @@ const QuotesPage: React.FC = () => {
 
       {/* Filters */}
       <div className="container-max py-8">
-        <div className="bg-white dark:bg-navy-800 rounded-lg shadow-md p-6 mb-8">
+        <div className="border-l-4 border-navy-700 dark:border-navy-300 bg-white dark:bg-navy-800 p-6 mb-8">
           <div className="flex items-center gap-2 mb-4">
-            <Filter size={20} className="text-navy-600 dark:text-navy-300" />
+            <Filter size={20} className="text-navy-700 dark:text-navy-300" />
             <h2 className="text-xl font-serif text-navy-800 dark:text-navy-100">
               Find Quotes
             </h2>
           </div>
           
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {/* Search */}
             <div>
               <label className="block text-sm font-medium text-navy-600 dark:text-navy-300 mb-2">
@@ -98,9 +98,9 @@ const QuotesPage: React.FC = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   placeholder="Search by text, author, or source..."
-                  className="w-full p-2 pl-8 rounded-md border border-navy-200 bg-white dark:bg-navy-700 dark:border-navy-600 dark:text-navy-100"
+                  className="w-full p-3 pl-10 rounded-md border-2 border-navy-200 bg-white dark:bg-navy-700 dark:border-navy-600 dark:text-navy-100 focus:border-navy-500 focus:outline-none"
                 />
-                <Search size={16} className="absolute left-2 top-3 text-navy-400 dark:text-navy-500" />
+                <Search size={18} className="absolute left-3 top-3.5 text-navy-400 dark:text-navy-500" />
               </div>
             </div>
             
@@ -112,7 +112,7 @@ const QuotesPage: React.FC = () => {
               <select
                 value={selectedEra}
                 onChange={(e) => setSelectedEra(e.target.value)}
-                className="w-full p-2 rounded-md border border-navy-200 bg-white dark:bg-navy-700 dark:border-navy-600 dark:text-navy-100"
+                className="w-full p-3 rounded-md border-2 border-navy-200 bg-white dark:bg-navy-700 dark:border-navy-600 dark:text-navy-100 focus:border-navy-500 focus:outline-none"
               >
                 <option value="all">All Eras</option>
                 {eras.map(era => (
@@ -131,7 +131,7 @@ const QuotesPage: React.FC = () => {
               <select
                 value={selectedAuthor}
                 onChange={(e) => setSelectedAuthor(e.target.value)}
-                className="w-full p-2 rounded-md border border-navy-200 bg-white dark:bg-navy-700 dark:border-navy-600 dark:text-navy-100"
+                className="w-full p-3 rounded-md border-2 border-navy-200 bg-white dark:bg-navy-700 dark:border-navy-600 dark:text-navy-100 focus:border-navy-500 focus:outline-none"
               >
                 <option value="all">All Authors</option>
                 {authorsWithQuotes.map(author => (
@@ -152,7 +152,7 @@ const QuotesPage: React.FC = () => {
                   setSelectedEra('all');
                   setSelectedAuthor('all');
                 }}
-                className="text-burgundy-700 dark:text-burgundy-300 hover:underline"
+                className="text-burgundy-700 dark:text-burgundy-300 hover:underline text-sm"
               >
                 Clear all filters
               </button>
@@ -182,7 +182,7 @@ const QuotesPage: React.FC = () => {
                 setSelectedEra('all');
                 setSelectedAuthor('all');
               }}
-              className="btn-primary"
+              className="px-4 py-2 bg-burgundy-700 text-white rounded-md hover:bg-burgundy-800 transition-colors"
             >
               Clear all filters
             </button>

@@ -11,16 +11,16 @@ const EventDetailPage: React.FC = () => {
   
   if (!event) {
     return (
-      <div className="min-h-screen bg-slate-50 dark:bg-navy-900 py-12">
-        <div className="container-max">
-          <div className="card p-8 text-center">
-            <h1 className="text-2xl font-serif text-burgundy-700 dark:text-burgundy-300 mb-4">
+      <div className="min-h-screen bg-white dark:bg-slate-900 py-12">
+        <div className="max-w-4xl mx-auto px-4">
+          <div className="text-center py-16">
+            <h1 className="text-3xl font-serif text-red-900 dark:text-red-300 mb-4">
               Event Not Found
             </h1>
-            <p className="text-navy-600 dark:text-navy-300 mb-6">
+            <p className="text-slate-600 dark:text-slate-300 mb-8 text-lg">
               The event you're looking for doesn't exist or has been removed.
             </p>
-            <Link to="/timeline" className="btn-primary">
+            <Link to="/timeline" className="inline-block px-6 py-3 bg-red-900 text-white rounded-lg hover:bg-red-800 transition-colors">
               Return to Timeline
             </Link>
           </div>
@@ -29,90 +29,99 @@ const EventDetailPage: React.FC = () => {
     );
   }
 
-  const relatedData = getRelatedEntities('event', event.id);
+  const relatedData = getRelatedEntities('event', event.id) as {
+    era?: any;
+    relatedPeople?: any[];
+    relatedDocuments?: any[];
+  };
   const relatedFigures = relatedData.relatedPeople || [];
   const relatedDocs = relatedData.relatedDocuments || [];
   const era = relatedData.era;
   
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-navy-900">
-      {/* Header */}
-      <div className="bg-burgundy-800 dark:bg-burgundy-900 text-white py-12">
-        <div className="container-max">
-          <div className="flex items-center gap-4 mb-6">
-            <Link to="/timeline" className="text-white/80 hover:text-white">
-              <ArrowLeft size={24} />
-            </Link>
-            <div>
-              <div className="text-burgundy-200 mb-2 flex items-center gap-2">
-                <Calendar size={16} />
-                {formatDate(event.year, event.month, event.day)}
-              </div>
-              <h1 className="text-3xl font-serif">{event.title}</h1>
-              {era && (
-                <div className="text-burgundy-200 mt-2">
-                  {era.name} ({era.startYear}-{era.endYear})
-                </div>
-              )}
-            </div>
+    <div className="min-h-screen bg-white dark:bg-slate-900">
+      {/* Hero Section */}
+      <div className="bg-gradient-to-b from-red-900 to-red-800 dark:from-red-950 dark:to-red-900 text-white">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+          <Link to="/timeline" className="inline-flex items-center gap-2 text-white/80 hover:text-white mb-8 transition-colors">
+            <ArrowLeft size={20} />
+            <span>Back to Timeline</span>
+          </Link>
+          
+          <div className="flex items-center gap-3 text-red-200 mb-4">
+            <Calendar size={20} />
+            <span className="text-lg">{formatDate(event.year, event.month, event.day)}</span>
           </div>
+          
+          <h1 className="text-5xl md:text-6xl font-serif mb-6 leading-tight">{event.title}</h1>
+          
+          {era && (
+            <div className="text-red-200 text-lg">
+              {era.name} • {era.startYear}–{era.endYear}
+            </div>
+          )}
+          
+          {event.locations.length > 0 && (
+            <div className="flex items-center gap-2 text-red-200 mt-4">
+              <MapPin size={18} />
+              <span>{event.locations.join(', ')}</span>
+            </div>
+          )}
         </div>
       </div>
       
       {/* Main Content */}
-      <div className="container-max py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
           {/* Main Content */}
           <div className="lg:col-span-2">
-            <div className="card p-6 mb-8">
-              <h2 className="text-2xl font-serif text-burgundy-700 dark:text-burgundy-300 mb-4">
-                Description
+            <article className="prose prose-lg max-w-none">
+              <h2 className="text-3xl font-serif text-red-900 dark:text-red-300 mb-6 pb-3 border-b-2 border-red-200 dark:border-red-800">
+                What Happened
               </h2>
-              <p className="text-navy-700 dark:text-navy-300 leading-relaxed">
+              <p className="text-slate-700 dark:text-slate-300 leading-relaxed text-lg">
                 {event.description}
               </p>
-              
-              {event.locations.length > 0 && (
-                <div className="mt-6 flex items-center gap-2 text-navy-600 dark:text-navy-300">
-                  <MapPin size={16} />
-                  <span>{event.locations.join(', ')}</span>
-                </div>
-              )}
-              
-              {event.tags.length > 0 && (
-                <div className="mt-6 flex flex-wrap gap-2">
+            </article>
+            
+            {event.tags.length > 0 && (
+              <div className="mt-12">
+                <h3 className="text-xl font-serif text-red-900 dark:text-red-300 mb-4">
+                  Topics
+                </h3>
+                <div className="flex flex-wrap gap-3">
                   {event.tags.map(tag => (
                     <span 
                       key={tag}
-                      className="px-3 py-1 bg-burgundy-50 text-burgundy-700 dark:bg-navy-700 dark:text-burgundy-300 rounded-full text-sm"
+                      className="px-4 py-2 bg-red-50 text-red-800 dark:bg-red-900/30 dark:text-red-300 rounded-full text-sm font-medium"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
-              )}
-            </div>
+              </div>
+            )}
           </div>
           
           {/* Sidebar */}
-          <div className="space-y-8">
+          <div className="space-y-10">
             {/* Related Figures */}
-            {relatedFigures.length > 0 && (
-              <div className="card p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <User className="w-5 h-5 text-burgundy-700 dark:text-burgundy-300" />
-                  <h2 className="text-xl font-serif text-burgundy-700 dark:text-burgundy-300">
+            {relatedFigures && relatedFigures.length > 0 && (
+              <aside>
+                <div className="flex items-center gap-2 mb-6 pb-2 border-b-2 border-red-200 dark:border-red-800">
+                  <User className="w-5 h-5 text-red-700 dark:text-red-300" />
+                  <h2 className="text-2xl font-serif text-red-900 dark:text-red-300">
                     Key Figures
                   </h2>
                 </div>
                 <div className="space-y-4">
-                  {relatedFigures.map(figure => (
+                  {relatedFigures.map((figure: any) => (
                     <Link 
                       key={figure.id}
                       to={`/figures/${figure.id}`}
-                      className="flex items-center gap-3 p-2 rounded-lg hover:bg-navy-50 dark:hover:bg-navy-700 transition-colors"
+                      className="flex items-center gap-4 py-3 px-4 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-l-2 border-red-300 dark:border-red-700"
                     >
-                      <div className="w-12 h-12 rounded-full overflow-hidden bg-navy-100 dark:bg-navy-700">
+                      <div className="w-14 h-14 rounded-full overflow-hidden bg-slate-200 dark:bg-slate-700 flex-shrink-0">
                         <img 
                           src={figure.image} 
                           alt={figure.name}
@@ -120,45 +129,45 @@ const EventDetailPage: React.FC = () => {
                         />
                       </div>
                       <div>
-                        <div className="font-medium text-navy-800 dark:text-navy-100">
+                        <div className="font-medium text-slate-900 dark:text-slate-100">
                           {figure.name}
                         </div>
-                        <div className="text-sm text-navy-600 dark:text-navy-300">
+                        <div className="text-sm text-slate-600 dark:text-slate-400">
                           {figure.roles[0]}
                         </div>
                       </div>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </aside>
             )}
             
             {/* Related Documents */}
-            {relatedDocs.length > 0 && (
-              <div className="card p-6">
-                <div className="flex items-center gap-2 mb-4">
-                  <FileText className="w-5 h-5 text-burgundy-700 dark:text-burgundy-300" />
-                  <h2 className="text-xl font-serif text-burgundy-700 dark:text-burgundy-300">
+            {relatedDocs && relatedDocs.length > 0 && (
+              <aside>
+                <div className="flex items-center gap-2 mb-6 pb-2 border-b-2 border-red-200 dark:border-red-800">
+                  <FileText className="w-5 h-5 text-red-700 dark:text-red-300" />
+                  <h2 className="text-2xl font-serif text-red-900 dark:text-red-300">
                     Related Documents
                   </h2>
                 </div>
-                <div className="space-y-4">
-                  {relatedDocs.map(doc => (
+                <div className="space-y-3">
+                  {relatedDocs.map((doc: any) => (
                     <Link 
                       key={doc.id}
                       to={`/documents/${doc.id}`}
-                      className="block p-3 rounded-lg hover:bg-navy-50 dark:hover:bg-navy-700 transition-colors"
+                      className="block py-3 px-4 rounded-md hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors border-l-2 border-red-300 dark:border-red-700"
                     >
-                      <div className="font-medium text-navy-800 dark:text-navy-100">
+                      <div className="font-medium text-slate-900 dark:text-slate-100 mb-1">
                         {doc.title}
                       </div>
-                      <div className="text-sm text-navy-600 dark:text-navy-300">
-                        {doc.author} · {doc.year}
+                      <div className="text-sm text-slate-600 dark:text-slate-400">
+                        {doc.author} • {doc.year}
                       </div>
                     </Link>
                   ))}
                 </div>
-              </div>
+              </aside>
             )}
           </div>
         </div>

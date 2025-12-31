@@ -23,7 +23,7 @@ const ErasPage: React.FC = () => {
       <div className="container-max py-8">
         <div className="space-y-16">
           {/* Timeline Overview Graphic */}
-          <div className="rounded-lg shadow-md p-6" style={{ backgroundColor: 'var(--global-bg-secondary)' }}>
+          <div className="border-l-4 border-burgundy-700 dark:border-burgundy-300 bg-white dark:bg-navy-800 p-6">
             <h2 className="text-2xl font-serif mb-6 text-navy-800 dark:text-navy-100">
               Church History Timeline
             </h2>
@@ -60,7 +60,7 @@ const ErasPage: React.FC = () => {
           {/* Detailed Era Cards */}
           <div>
             <h2 className="text-2xl font-serif mb-6 text-navy-800 dark:text-navy-100">
-              ExploreEras
+              Explore Eras
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               {eras.map((era, index) => (
@@ -74,15 +74,15 @@ const ErasPage: React.FC = () => {
           </div>
           
           {/* Era Legend */}
-          <div className="rounded-lg shadow-md p-6" style={{ backgroundColor: 'var(--global-bg-secondary)' }}>
+          <div className="border-l-4 border-navy-700 dark:border-navy-300 bg-white dark:bg-navy-800 p-6">
             <h3 className="text-lg font-serif mb-4 text-navy-800 dark:text-navy-100">
               Era Color Legend
             </h3>
-            <div className="flex flex-wrap gap-4">
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
               {eras.map((era, index) => (
                 <div key={era.id} className="flex items-center gap-2">
                   <div 
-                    className="w-4 h-4 rounded"
+                    className="w-4 h-4 rounded flex-shrink-0"
                     style={{ backgroundColor: getEraTimelineColor(index) }}
                   />
                   <span className="text-sm text-navy-600 dark:text-navy-300">

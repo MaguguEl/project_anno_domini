@@ -4,14 +4,14 @@ import { Github, Shield } from 'lucide-react';
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-navy-900 dark:bg-navy-950 text-white mt-auto">
+    <footer className="bg-navy-800 dark:bg-navy-950 text-white mt-auto">
       <div className="container-max py-12">
         {/* Main Footer Content */}
         <div className="flex flex-col md:flex-row justify-between items-start gap-8 mb-8">
           {/* Logo and Copyright Section */}
           <div className="flex flex-col gap-4">
             <div className="flex items-center gap-3">
-              <Shield className="w-12 h-12 text-burgundy-400" />
+              <Shield className="w-12 h-12 text-burgundy-500" />
               <div>
                 <div className="text-xl font-serif text-white">Anno Domini</div>
                 <div className="text-sm text-gray-400">Christian History Explorer</div>
@@ -26,27 +26,27 @@ const Footer: React.FC = () => {
           <div className="flex items-center gap-6">
             <Link 
               to="/about" 
-              className="text-gray-300 hover:text-burgundy-400 transition-colors"
+              className="text-sm text-gray-300 hover:text-burgundy-400 transition-colors"
             >
               About
             </Link>
             <Link 
               to="/privacy" 
-              className="text-gray-300 hover:text-burgundy-400 transition-colors"
+              className="text-sm text-gray-300 hover:text-burgundy-400 transition-colors"
             >
               Privacy
             </Link>
             <Link 
               to="/terms" 
-              className="text-gray-300 hover:text-burgundy-400 transition-colors"
+              className="text-sm text-gray-300 hover:text-burgundy-400 transition-colors"
             >
               Terms
             </Link>
             <a 
-              href="https://github.com" 
+              href="https://github.com/MaguguEl/project_anno_domini" 
               target="_blank" 
               rel="noreferrer" 
-              className="text-gray-300 hover:text-burgundy-400 transition-colors flex items-center gap-2"
+              className="text-sm text-gray-300 hover:text-burgundy-400 transition-colors flex items-center gap-2"
             >
               <Github size={18} />
               <span>Source</span>

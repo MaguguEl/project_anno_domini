@@ -38,13 +38,6 @@ const categories = [
     description: 'Historical analysis and scholarly works',
     color: 'bg-purple-600 dark:bg-purple-400',
   },
-  {
-    id: 'topics',
-    title: 'Topic Tags',
-    icon: Tags,
-    description: 'Browse by councils, theology, liturgy, and more',
-    color: 'bg-rose-600 dark:bg-rose-400',
-  },
 ];
 
 const SourcesPage: React.FC = () => {
@@ -100,68 +93,66 @@ const SourcesPage: React.FC = () => {
           <h2 className="text-2xl font-serif text-navy-800 dark:text-navy-100 mb-6">
             Quick Access
           </h2>
-          <div className="bg-white dark:bg-navy-800 rounded-lg shadow-md p-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-              <Link
-                to="/sources/bookmarks"
-                className="flex items-center gap-3 p-4 rounded-lg hover:bg-slate-50 dark:hover:bg-navy-700 transition-colors"
-              >
-                <BookMarked className="w-6 h-6 text-burgundy-700 dark:text-burgundy-300" />
-                <div>
-                  <div className="font-medium text-navy-800 dark:text-navy-100">
-                    My Bookmarks
-                  </div>
-                  <div className="text-sm text-navy-600 dark:text-navy-300">
-                    Access saved sources
-                  </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <Link
+              to="/sources/bookmarks"
+              className="flex items-center gap-3 p-4 border-l-4 border-burgundy-700 dark:border-burgundy-300 bg-white dark:bg-navy-800 hover:bg-slate-50 dark:hover:bg-navy-700 transition-colors"
+            >
+              <BookMarked className="w-6 h-6 text-burgundy-700 dark:text-burgundy-300" />
+              <div>
+                <div className="font-medium text-navy-800 dark:text-navy-100">
+                  My Bookmarks
                 </div>
-              </Link>
-              
-              <Link
-                to="/sources/external"
-                className="flex items-center gap-3 p-4 rounded-lg hover:bg-slate-50 dark:hover:bg-navy-700 transition-colors"
-              >
-                <Archive className="w-6 h-6 text-navy-700 dark:text-navy-300" />
-                <div>
-                  <div className="font-medium text-navy-800 dark:text-navy-100">
-                    External Links
-                  </div>
-                  <div className="text-sm text-navy-600 dark:text-navy-300">
-                    Browse digital libraries
-                  </div>
+                <div className="text-sm text-navy-600 dark:text-navy-300">
+                  Access saved sources
                 </div>
-              </Link>
-              
-              <Link
-                to="/sources/recent"
-                className="flex items-center gap-3 p-4 rounded-lg hover:bg-slate-50 dark:hover:bg-navy-700 transition-colors"
-              >
-                <Clock className="w-6 h-6 text-gold-600 dark:text-gold-400" />
-                <div>
-                  <div className="font-medium text-navy-800 dark:text-navy-100">
-                    Recently Viewed
-                  </div>
-                  <div className="text-sm text-navy-600 dark:text-navy-300">
-                    Your history
-                  </div>
+              </div>
+            </Link>
+            
+            <Link
+              to="/sources/external"
+              className="flex items-center gap-3 p-4 border-l-4 border-navy-700 dark:border-navy-300 bg-white dark:bg-navy-800 hover:bg-slate-50 dark:hover:bg-navy-700 transition-colors"
+            >
+              <Archive className="w-6 h-6 text-navy-700 dark:text-navy-300" />
+              <div>
+                <div className="font-medium text-navy-800 dark:text-navy-100">
+                  External Links
                 </div>
-              </Link>
-              
-              <Link
-                to="/sources/search"
-                className="flex items-center gap-3 p-4 rounded-lg hover:bg-slate-50 dark:hover:bg-navy-700 transition-colors"
-              >
-                <Search className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
-                <div>
-                  <div className="font-medium text-navy-800 dark:text-navy-100">
-                    Advanced Search
-                  </div>
-                  <div className="text-sm text-navy-600 dark:text-navy-300">
-                    Find specific sources
-                  </div>
+                <div className="text-sm text-navy-600 dark:text-navy-300">
+                  Browse digital libraries
                 </div>
-              </Link>
-            </div>
+              </div>
+            </Link>
+            
+            <Link
+              to="/sources/recent"
+              className="flex items-center gap-3 p-4 border-l-4 border-gold-600 dark:border-gold-400 bg-white dark:bg-navy-800 hover:bg-slate-50 dark:hover:bg-navy-700 transition-colors"
+            >
+              <Clock className="w-6 h-6 text-gold-600 dark:text-gold-400" />
+              <div>
+                <div className="font-medium text-navy-800 dark:text-navy-100">
+                  Recently Viewed
+                </div>
+                <div className="text-sm text-navy-600 dark:text-navy-300">
+                  Your history
+                </div>
+              </div>
+            </Link>
+            
+            <Link
+              to="/sources/search"
+              className="flex items-center gap-3 p-4 border-l-4 border-emerald-600 dark:border-emerald-400 bg-white dark:bg-navy-800 hover:bg-slate-50 dark:hover:bg-navy-700 transition-colors"
+            >
+              <Search className="w-6 h-6 text-emerald-600 dark:text-emerald-400" />
+              <div>
+                <div className="font-medium text-navy-800 dark:text-navy-100">
+                  Advanced Search
+                </div>
+                <div className="text-sm text-navy-600 dark:text-navy-300">
+                  Find specific sources
+                </div>
+              </div>
+            </Link>
           </div>
         </div>
       </div>

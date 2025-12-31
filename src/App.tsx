@@ -16,7 +16,7 @@ import QuotesPage from './pages/QuotesPage';
 import QuoteDetailPage from './pages/QuoteDetailPage';
 import SourcesPage from './pages/SourcesPage';
 import SourceCategoryPage from './pages/sources/SourceCategoryPage';
-import SourceDetailPage from './pages/sources/SourceDetailPage';
+import SourceDetailPage from './pages/SourceDetailPage';
 import ExternalLinksPage from './pages/sources/ExternalLinksPage';
 import BookmarksPage from './pages/sources/BookmarksPage';
 import AboutPage from './pages/AboutPage';

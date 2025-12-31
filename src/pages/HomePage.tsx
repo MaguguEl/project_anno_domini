@@ -1,6 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { Shield, Calendar, Users, FileText, BookOpen, MessageSquare, ChevronLeft, ChevronRight, ArrowRight, Quote, User, Cake, Cross, Star, Mail, Send, Search, ChevronDown, Library, Check } from 'lucide-react';
+import { 
+  Shield, Calendar, Users, FileText, BookOpen, MessageSquare, 
+  ChevronLeft, ChevronRight, ArrowRight, Quote, User, Cake, 
+  Cross, Star, Mail, Send, Search, ChevronDown, Library, Check 
+} from 'lucide-react';
 import { useData } from '../context/DataContext';
+import { Link } from 'react-router-dom';
 
 // Search Component 
 const SearchBox = () => {
@@ -36,14 +41,14 @@ const SearchBox = () => {
 // Navigation Button Component 
 function NavButton({ icon, title, to }: { icon: React.ReactNode; title: string; to: string }) {
   return (
-    <div
-      className="bg-white rounded-xl p-3 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col items-center justify-center text-center border border-gray-100 hover:border-[#8b2332]/20 min-h-[80px] cursor-pointer"
-    >
-      <div className="text-[#8b2332] mb-2 group-hover:scale-110 transition-transform duration-300">
-        {icon}
+    <Link to={to} className="block">
+      <div className="bg-white rounded-xl p-3 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col items-center justify-center text-center border border-gray-100 hover:border-[#8b2332]/20 min-h-[80px] cursor-pointer">
+        <div className="text-[#8b2332] mb-2 group-hover:scale-110 transition-transform duration-300">
+          {icon}
+        </div>
+        <h3 className="text-xs font-medium text-gray-900 group-hover:text-[#8b2332] transition-colors duration-300 leading-tight px-1">{title}</h3>
       </div>
-      <h3 className="text-xs font-medium text-gray-900 group-hover:text-[#8b2332] transition-colors duration-300 leading-tight px-1">{title}</h3>
-    </div>
+    </Link>
   );
 }
 
@@ -107,16 +112,18 @@ const TimelineDisplay = ({ events }: { events: any[] }) => {
   return (
     <div className="space-y-3">
       {events.map((event) => (
-        <div key={event.id} className="flex gap-3 p-3 rounded-lg bg-gray-50">
-          <div className="flex-shrink-0 w-12 text-center">
-            <div className="text-base font-bold" style={{ color: '#8b2332' }}>{event.year}</div>
-            <div className="text-xs" style={{ color: '#725d4f' }}>AD</div>
+        <Link key={event.id} to={`/events/${event.id}`} className="block">
+          <div className="flex gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+            <div className="flex-shrink-0 w-12 text-center">
+              <div className="text-base font-bold" style={{ color: '#8b2332' }}>{event.year}</div>
+              <div className="text-xs" style={{ color: '#725d4f' }}>AD</div>
+            </div>
+            <div className="flex-1 min-w-0">
+              <h3 className="font-semibold mb-1 text-sm" style={{ color: '#725d4f' }}>{event.title}</h3>
+              <p className="text-xs" style={{ color: '#725d4f', opacity: 0.8 }}>{event.description}</p>
+            </div>
           </div>
-          <div className="flex-1 min-w-0">
-            <h3 className="font-semibold mb-1 text-sm" style={{ color: '#725d4f' }}>{event.title}</h3>
-            <p className="text-xs" style={{ color: '#725d4f', opacity: 0.8 }}>{event.description}</p>
-          </div>
-        </div>
+        </Link>
       ))}
     </div>
   );
@@ -339,9 +346,9 @@ const MainContentSection = () => {
                   {todayEvents.length === 0 ? (
                     <div className="text-center py-8" style={{ color: '#725d4f' }}>
                       <p className="text-sm">No historical events recorded for this day.</p>
-                      <p className="mt-2 text-sm hover:underline cursor-pointer" style={{ color: '#725d4f' }}>
+                      <Link to="/timeline" className="mt-2 text-sm hover:underline" style={{ color: '#725d4f' }}>
                         Browse the full timeline →
-                      </p>
+                      </Link>
                     </div>
                   ) : (
                     <div className="bg-gray-50 rounded-lg p-3">
@@ -350,9 +357,9 @@ const MainContentSection = () => {
                   )}
                   
                   <div className="mt-4 text-right">
-                    <div className="flex items-center justify-end gap-1 hover:underline text-sm cursor-pointer" style={{ color: '#725d4f' }}>
+                    <Link to="/timeline" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
                       View full timeline <ArrowRight size={14} />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -387,9 +394,9 @@ const MainContentSection = () => {
                   </blockquote>
                   
                   <div className="text-right">
-                    <div className="flex items-center justify-end gap-1 hover:underline text-sm cursor-pointer" style={{ color: '#725d4f' }}>
+                    <Link to="/quotes" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
                       Explore more quotes <ArrowRight size={14} />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -415,33 +422,32 @@ const MainContentSection = () => {
                       </div>
                       <div className="space-y-3">
                         {bornToday.map((figure) => (
-                          <div 
-                            key={figure.id}
-                            className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
-                          >
-                            <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
-                              <User className="w-6 h-6" style={{ color: '#725d4f' }} />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-medium mb-1 text-sm hover:underline" style={{ color: '#725d4f' }}>
-                                {figure.name}
-                              </h4>
-                              <p className="text-xs mb-1" style={{ color: '#725d4f' }}>
-                                Born in {figure.birthYear}
-                              </p>
-                              <div className="flex flex-wrap gap-1">
-                                {figure.roles.slice(0, 2).map(role => (
-                                  <span 
-                                    key={role}
-                                    className="text-xs px-1.5 py-0.5 bg-gray-100 rounded-full"
-                                    style={{ color: '#725d4f' }}
-                                  >
-                                    {role}
-                                  </span>
-                                ))}
+                          <Link key={figure.id} to={`/figures/${figure.id}`} className="block">
+                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
+                                <User className="w-6 h-6" style={{ color: '#725d4f' }} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-medium mb-1 text-sm hover:underline" style={{ color: '#725d4f' }}>
+                                  {figure.name}
+                                </h4>
+                                <p className="text-xs mb-1" style={{ color: '#725d4f' }}>
+                                  Born in {figure.birthYear}
+                                </p>
+                                <div className="flex flex-wrap gap-1">
+                                  {figure.roles.slice(0, 2).map(role => (
+                                    <span 
+                                      key={role}
+                                      className="text-xs px-1.5 py-0.5 bg-gray-100 rounded-full"
+                                      style={{ color: '#725d4f' }}
+                                    >
+                                      {role}
+                                    </span>
+                                  ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -458,33 +464,32 @@ const MainContentSection = () => {
                       </div>
                       <div className="space-y-3">
                         {diedToday.map((figure) => (
-                          <div 
-                            key={figure.id}
-                            className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors cursor-pointer"
-                          >
-                            <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
-                              <User className="w-6 h-6" style={{ color: '#725d4f' }} />
-                            </div>
-                            <div className="flex-1 min-w-0">
-                              <h4 className="font-medium mb-1 text-sm hover:underline" style={{ color: '#725d4f' }}>
-                                {figure.name}
-                              </h4>
-                              <p className="text-xs mb-1" style={{ color: '#725d4f', opacity: 0.7 }}>
-                                Died in {figure.deathYear}
-                              </p>
-                              <div className="flex flex-wrap gap-1">
-                                {figure.roles.slice(0, 2).map(role => (
-                                  <span 
-                                    key={role}
-                                    className="text-xs px-1.5 py-0.5 bg-gray-100 rounded-full"
-                                    style={{ color: '#725d4f' }}
-                                  >
-                                    {role}
-                                  </span>
-                                ))}
+                          <Link key={figure.id} to={`/figures/${figure.id}`} className="block">
+                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
+                              <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
+                                <User className="w-6 h-6" style={{ color: '#725d4f' }} />
+                              </div>
+                              <div className="flex-1 min-w-0">
+                                <h4 className="font-medium mb-1 text-sm hover:underline" style={{ color: '#725d4f' }}>
+                                  {figure.name}
+                                </h4>
+                                <p className="text-xs mb-1" style={{ color: '#725d4f', opacity: 0.7 }}>
+                                  Died in {figure.deathYear}
+                                </p>
+                                <div className="flex flex-wrap gap-1">
+                                  {figure.roles.slice(0, 2).map(role => (
+                                    <span 
+                                      key={role}
+                                      className="text-xs px-1.5 py-0.5 bg-gray-100 rounded-full"
+                                      style={{ color: '#725d4f' }}
+                                    >
+                                      {role}
+                                    </span>
+                                  ))}
+                                </div>
                               </div>
                             </div>
-                          </div>
+                          </Link>
                         ))}
                       </div>
                     </div>
@@ -493,16 +498,16 @@ const MainContentSection = () => {
                   {bornToday.length === 0 && diedToday.length === 0 && (
                     <div className="text-center py-6" style={{ color: '#725d4f' }}>
                       <p className="text-sm">No notable figures were born or died on this day.</p>
-                      <p className="mt-2 text-sm hover:underline cursor-pointer" style={{ color: '#725d4f' }}>
+                      <Link to="/figures" className="mt-2 text-sm hover:underline" style={{ color: '#725d4f' }}>
                         Browse historical figures →
-                      </p>
+                      </Link>
                     </div>
                   )}
                   
                   <div className="mt-4 text-right">
-                    <div className="flex items-center justify-end gap-1 hover:underline text-sm cursor-pointer" style={{ color: '#725d4f' }}>
+                    <Link to="/figures" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
                       View all figures <ArrowRight size={14} />
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </div>
@@ -519,10 +524,8 @@ const MainContentSection = () => {
                 </div>
                 <div className="space-y-2">
                   {eras.slice(0, 3).map((era) => (
-                    <div key={era.id}>
-                      <div 
-                        className="block p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-[#8b2332]/20 cursor-pointer"
-                      >
+                    <Link key={era.id} to={`/eras/${era.id}`} className="block">
+                      <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-[#8b2332]/20">
                         <div className="flex justify-between items-start mb-1">
                           <div className="font-medium text-sm" style={{ color: '#725d4f' }}>
                             {era.name}
@@ -540,17 +543,17 @@ const MainContentSection = () => {
                             : era.description}
                         </p>
                       </div>
-                    </div>
+                    </Link>
                   ))}
                 </div>
                 
                 <div className="mt-4 pt-4 border-t border-gray-300">
-                  <div 
-                    className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-[#8b2332] hover:bg-[#6d1a27] text-white rounded-lg transition-colors text-sm cursor-pointer"
-                  >
-                    <BookOpen size={16} />
-                    View All Eras
-                  </div>
+                  <Link to="/eras" className="block">
+                    <div className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-[#8b2332] hover:bg-[#6d1a27] text-white rounded-lg transition-colors text-sm">
+                      <BookOpen size={16} />
+                      View All Eras
+                    </div>
+                  </Link>
                 </div>
               </div>
             </div>
