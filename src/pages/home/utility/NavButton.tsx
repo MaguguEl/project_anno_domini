@@ -10,7 +10,7 @@ interface NavButtonProps {
 const NavButton: React.FC<NavButtonProps> = ({ icon, title, to }) => {
   return (
     <Link to={to} className="block">
-      <div className="bg-white rounded-xl p-3 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col items-center justify-center text-center border border-gray-100 hover:border-[#8b2332]/20 min-h-[80px] cursor-pointer">
+      <div className="bg-white rounded-xl p-3 shadow-sm hover:shadow-lg transition-all duration-300 hover:-translate-y-1 group flex flex-col items-center justify-center text-center border border-navy-200 hover:border-[#8b2332]/20 min-h-[80px] cursor-pointer">
         <div className="text-[#8b2332] mb-2 group-hover:scale-110 transition-transform duration-300">
           {icon}
         </div>
