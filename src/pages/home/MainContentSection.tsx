@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { BookOpen, Quote, User, Cake, Cross, Star, Mail, Send, Check, ChevronLeft, ChevronRight, ArrowRight, Users, Calendar } from 'lucide-react';
+import { BookOpen, Quote, User, Cake, Cross, Star, Send, Check, ChevronLeft, ChevronRight, ArrowRight, Users, Calendar } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
 import TimelineDisplay from '../../components/ui/TimelineDisplay';
@@ -368,11 +368,8 @@ const MainContentSection = () => {
           <div className="max-w-5xl mx-auto">
             {/* Header */}
             <div className="text-center mb-12">
-              <div className="inline-flex items-center justify-center w-16 h-16 bg-white/10 rounded-full mb-6">
-                <Mail className="w-8 h-8 text-white" />
-              </div>
               <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
-                Stay Connected to History
+                Stay Connected to Church History
               </h2>
               <p className="text-lg text-white/90 max-w-2xl mx-auto">
                 Join thousands of history enthusiasts receiving daily insights from church history delivered straight to your inbox.

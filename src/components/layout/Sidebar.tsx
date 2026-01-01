@@ -13,7 +13,6 @@ import {
   MessageSquare,
   Shield
 } from 'lucide-react';
-import { ThemeContext } from '../../context/ThemeContext';
 
 interface SidebarProps {
   onClose: () => void;
@@ -21,7 +20,6 @@ interface SidebarProps {
 
 const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
   const location = useLocation();
-  const { theme, toggleTheme } = useContext(ThemeContext);
   
   const isActive = (path: string) => location.pathname === path;
   
@@ -86,7 +84,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
       
       {/* Footer with theme toggle */}
       <div className="p-4 border-t border-gray-200 dark:border-navy-700 flex-shrink-0">
-        <button
+        {/* <button
           onClick={() => {
             toggleTheme();
             onClose();
@@ -104,7 +102,7 @@ const Sidebar: React.FC<SidebarProps> = ({ onClose }) => {
               <span className="font-medium">Light Mode</span>
             </>
           )}
-        </button>
+        </button> */}
       </div>
     </div>
   );
