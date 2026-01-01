@@ -73,11 +73,11 @@ const TimelinePage: React.FC = () => {
       {/* Header */}
       <div className="bg-gold-500 py-12">
         <div className="container-max">
-          <div className="flex items-center gap-4 mb-6">
-            <Link to="/" className="text-navy-900 hover:text-navy-700">
-              <ArrowLeft size={24} />
-            </Link>
-            <h1 className="text-3xl font-serif text-navy-900">Historical Timeline</h1>
+          <div>
+            <h1 className="text-3xl font-serif text-navy-900 mb-2">Historical Timeline</h1>
+             <p className="text-sm md:text-base text-navy-800 max-w-3xl">
+             Explore the major events of Church history as they unfolded over time, traced through Philip Schaff’s historical writings from the apostolic Church to the present.
+            </p>
           </div>
         </div>
       </div>

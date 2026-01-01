@@ -1,7 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, Sun, Moon, Search, Shield, User, } from 'lucide-react';
-import { ThemeContext } from '../../context/ThemeContext';
+import { Menu, Search, Shield, User, } from 'lucide-react';
 import SearchModal from '../ui/SearchModal';
 
 interface HeaderProps {
@@ -19,7 +18,6 @@ const navItems = [
 ];
 
 const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
-  const { theme, toggleTheme } = useContext(ThemeContext);
   const location = useLocation();
   const [isSearchModalOpen, setIsSearchModalOpen] = useState(false);
   
@@ -77,19 +75,6 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
                   aria-label="Search"
                 >
                   <Search className="w-5 h-5 text-navy-700 dark:text-navy-300" />
-                </button>
-                
-                {/* Theme toggle */}
-                <button 
-                  onClick={toggleTheme} 
-                  className="hidden md:block p-2 rounded-full hover:bg-slate-100 dark:hover:bg-navy-700 transition-colors"
-                  aria-label={theme === 'light' ? 'Switch to dark mode' : 'Switch to light mode'}
-                >
-                  {theme === 'light' ? (
-                    <Moon className="w-5 h-5 text-navy-700 dark:text-navy-300" />
-                  ) : (
-                    <Sun className="w-5 h-5 text-navy-300" />
-                  )}
                 </button>
                 
                {/* User Avatar with Lucide User icon */}
