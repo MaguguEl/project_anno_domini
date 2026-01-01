@@ -13,7 +13,7 @@ import {
   MessageSquare,
   Shield
 } from 'lucide-react';
-import { ThemeContext } from '../context/ThemeContext';
+import { ThemeContext } from '../../context/ThemeContext';
 
 interface SidebarProps {
   onClose: () => void;

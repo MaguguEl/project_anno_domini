@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Quote, User, BookOpen, Calendar, Share2, Heart, Copy, Check } from 'lucide-react';
-import { figures } from '../data/figures';
-import { formatLifespan } from '../utils/dateUtils';
+import { figures } from '../../data/figures';
+import { formatLifespan } from '../../utils/dateUtils';
 
 const QuoteDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

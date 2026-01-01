@@ -1,10 +1,10 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, Calendar, Users, FileText, BookOpen, MapPin, Crown, ScrollText } from 'lucide-react';
-import { useData } from '../context/DataContext';
-import TimelineDisplay from '../components/TimelineDisplay';
-import FigureCard from '../components/FigureCard';
-import DocumentCard from '../components/DocumentCard';
+import { useData } from '../../context/DataContext';
+import TimelineDisplay from '../../components/ui/TimelineDisplay';
+import FigureCard from '../../components/ui/FigureCard';
+import DocumentCard from '../../components/ui/DocumentCard';
 
 const EraDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

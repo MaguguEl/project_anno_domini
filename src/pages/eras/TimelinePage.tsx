@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { ArrowLeft, Filter } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import { useData } from '../context/DataContext';
-import TimelineDisplay from '../components/TimelineDisplay';
+import { useData } from '../../context/DataContext';
+import TimelineDisplay from '../../components/ui/TimelineDisplay';
 
 const TimelinePage: React.FC = () => {
   const { eras, events, getEventsByEra } = useData();

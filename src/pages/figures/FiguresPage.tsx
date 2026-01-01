@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
-import { useData } from '../context/DataContext';
-import FigureCard from '../components/FigureCard';
-import SearchBox from '../components/SearchBox';
+import { useData } from '../../context/DataContext';
+import FigureCard from '../../components/ui/FigureCard';
+import SearchBox from '../../components/ui/SearchBox';
 import { Filter } from 'lucide-react';
 
 const FiguresPage: React.FC = () => {

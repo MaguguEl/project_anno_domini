@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Era } from '../types';
+import { Era } from '../../types';
 
 interface EraCardProps {
   era: Era;

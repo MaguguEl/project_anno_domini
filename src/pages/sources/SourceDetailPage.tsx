@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft, ExternalLink, Download, BookmarkPlus, Users, Calendar, Tag, Globe, FileText, Check } from 'lucide-react';
-import { getSourceById } from '../data/federatedSources';
+import { getSourceById } from '../../data/federatedSources';
 
 const SourceDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

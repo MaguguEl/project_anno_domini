@@ -1,6 +1,6 @@
 import React from 'react';
-import { useData } from '../context/DataContext';
-import EraCard from '../components/EraCard';
+import { useData } from '../../context/DataContext';
+import EraCard from '../../components/ui/EraCard';
 
 const ErasPage: React.FC = () => {
   const { eras, getEnhancedEras, getEraTimelineColor } = useData();

@@ -1,8 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, Sun, Moon, Search, Shield, } from 'lucide-react';
-import { ThemeContext } from '../context/ThemeContext';
-import SearchModal from './SearchModal';
+import { Menu, Sun, Moon, Search, Shield, User, } from 'lucide-react';
+import { ThemeContext } from '../../context/ThemeContext';
+import SearchModal from '../ui/SearchModal';
 
 interface HeaderProps {
   onMenuClick: () => void;
@@ -92,11 +92,9 @@ const Header: React.FC<HeaderProps> = ({ onMenuClick }) => {
                   )}
                 </button>
                 
-                {/* User Avatar */}
-                <div className="hidden md:block w-8 h-8 rounded-full bg-burgundy-100 dark:bg-navy-700 flex items-center justify-center cursor-pointer hover:bg-burgundy-200 dark:hover:bg-navy-600 transition-colors">
-                  <span className="text-burgundy-700 dark:text-burgundy-300 font-medium text-sm">
-                    U
-                  </span>
+               {/* User Avatar with Lucide User icon */}
+                <div className="hidden md:block w-8 h-8 rounded-full bg-burgundy-100 dark:bg-navy-700 flex items-center justify-center cursor-pointer hover:bg-burgundy-200 dark:hover:bg-navy-600 transition-colors p-1">
+                  <User className="w-full h-full text-burgundy-700 dark:text-burgundy-300" />
                 </div>
                 
                 {/* Mobile menu button */}

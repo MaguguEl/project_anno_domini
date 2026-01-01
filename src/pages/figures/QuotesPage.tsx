@@ -1,8 +1,8 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Quote, Search, Filter, BookOpen } from 'lucide-react';
-import { figures } from '../data/figures';
-import { eras } from '../data/eras';
+import { figures } from '../../data/figures';
+import { eras } from '../../data/eras';
 
 const QuotesPage: React.FC = () => {
   const [searchQuery, setSearchQuery] = useState('');

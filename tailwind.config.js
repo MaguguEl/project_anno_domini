@@ -5,6 +5,31 @@ export default {
   theme: {
     extend: {
       colors: {
+        // Custom colors from your palette
+        'deep-red': '#770000',
+        'primary-red': '#8B0000',
+        'light-red': '#D42E2E',
+        'pale-red': '#EE7171',
+        'soft-red': '#FDE4E4',
+        'softest-red': '#FDF2F2',
+        
+        'navy-dark': '#14213D',
+        'navy-medium': '#253C63',
+        'navy-light': '#2E4C7D',
+        'navy-pale': '#5D87B7',
+        
+        'gray-dark': '#1F2937',
+        'gray-medium': '#4B5563',
+        'gray-light': '#6B7280',
+        'gray-pale': '#9CA3AF',
+        'gray-lightest': '#D1D5DB',
+        'gray-soft': '#E5E7EB',
+        
+        'sky-blue': '#C2D3E3',
+        'parchment': '#EBE9E1',
+        'parchment-light': '#F7F4EF',
+        
+        // Theme color scales
         burgundy: {
           50: 'var(--color-burgundy-50)',
           100: 'var(--color-burgundy-100)',

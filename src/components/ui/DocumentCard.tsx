@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Document } from '../types';
+import { Document } from '../../types';
 
 interface DocumentCardProps {
   document: Document;

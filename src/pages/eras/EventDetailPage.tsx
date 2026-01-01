@@ -1,8 +1,8 @@
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { useData } from '../context/DataContext';
+import { useData } from '../../context/DataContext';
 import { ArrowLeft, Calendar, MapPin, User, FileText } from 'lucide-react';
-import { formatDate } from '../utils/dateUtils';
+import { formatDate } from '../../utils/dateUtils';
 
 const EventDetailPage: React.FC = () => {
   const { id } = useParams<{ id: string }>();

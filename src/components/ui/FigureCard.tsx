@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Figure } from '../types';
-import { formatLifespan } from '../utils/dateUtils';
-import { Calendar, MapPin, BookOpen, Award } from 'lucide-react';
+import { Figure } from '../../types';
+import { formatLifespan } from '../../utils/dateUtils';
+import { useData } from '../../context/DataContext';
+import { Calendar, MapPin, BookOpen, Star } from 'lucide-react';
 
 interface FigureCardProps {
   figure: Figure;
@@ -10,23 +11,38 @@ interface FigureCardProps {
 }
 
 const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
-  // Get era display name and color
-  const getEraDisplay = () => {
+  const { eras, getEraTimelineColor } = useData();
+
+  // Find the era object for this figure
+  const figureEra = eras.find(era => era.id === figure.era);
+  
+  // Get timeline color based on index or era ID
+  const getTimelineColor = () => {
+    if (figureEra) {
+      // Find the index of the era in the eras array
+      const eraIndex = eras.findIndex(era => era.id === figure.era);
+      return getEraTimelineColor(eraIndex);
+    }
+    return '#6B7280'; // Default gray if era not found
+  };
+
+  // Get era display name
+  const getEraName = () => {
     switch (figure.era) {
       case 'apostolic':
-        return { name: 'Apostolic Era', color: 'bg-red-500', borderColor: 'border-red-500' };
+        return 'Apostolic Era';
       case 'ante-nicene':
-        return { name: 'Ante-Nicene Era', color: 'bg-green-500', borderColor: 'border-green-500' };
+        return 'Ante-Nicene';
       case 'nicene':
-        return { name: 'Nicene & Post-Nicene', color: 'bg-blue-500', borderColor: 'border-blue-500' };
+        return 'Nicene Era';
       case 'medieval':
-        return { name: 'Medieval Period', color: 'bg-yellow-500', borderColor: 'border-yellow-500' };
+        return 'Medieval';
       case 'reformation':
-        return { name: 'Reformation Era', color: 'bg-purple-500', borderColor: 'border-purple-500' };
+        return 'Reformation';
       case 'modern':
-        return { name: 'Modern Era', color: 'bg-gray-500', borderColor: 'border-gray-500' };
+        return 'Modern';
       default:
-        return { name: 'Unknown Era', color: 'bg-gray-400', borderColor: 'border-gray-400' };
+        return 'Unknown Era';
     }
   };
 
@@ -50,8 +66,8 @@ const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
     }
   };
 
-  // Get impact level based on roles and influence
-  const getImpactLevel = () => {
+  // Get influence level based on roles and influence
+  const getInfluenceLevel = () => {
     const roleCount = figure.roles.length;
     const hasMultipleRoles = roleCount >= 2;
     const hasKeyRole = figure.roles.some(role => 
@@ -60,17 +76,17 @@ const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
     const hasMajorWritings = figure.documents && figure.documents.length > 0;
     const hasQuotes = figure.quotes && figure.quotes.length > 0;
 
-    let impactScore = 0;
-    if (hasMultipleRoles) impactScore += 1;
-    if (hasKeyRole) impactScore += 2;
-    if (hasMajorWritings) impactScore += 1;
-    if (hasQuotes) impactScore += 1;
-    if (figure.influence && figure.influence.length > 100) impactScore += 1;
+    let influenceScore = 0;
+    if (hasMultipleRoles) influenceScore += 1;
+    if (hasKeyRole) influenceScore += 2;
+    if (hasMajorWritings) influenceScore += 1;
+    if (hasQuotes) influenceScore += 1;
+    if (figure.influence && figure.influence.length > 100) influenceScore += 1;
 
-    if (impactScore >= 5) return 'Legendary';
-    if (impactScore >= 4) return 'Profound';
-    if (impactScore >= 3) return 'Significant';
-    if (impactScore >= 2) return 'Notable';
+    if (influenceScore >= 5) return 'Legendary';
+    if (influenceScore >= 4) return 'Profound';
+    if (influenceScore >= 3) return 'Significant';
+    if (influenceScore >= 2) return 'Notable';
     return 'Historical';
   };
 
@@ -91,10 +107,10 @@ const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
     return 'CH';
   };
 
-  // Get rarity stars based on impact
+  // Get rarity stars based on influence
   const getRarityStars = () => {
-    const impactLevel = getImpactLevel();
-    switch (impactLevel) {
+    const influenceLevel = getInfluenceLevel();
+    switch (influenceLevel) {
       case 'Legendary': return 5;
       case 'Profound': return 4;
       case 'Significant': return 3;
@@ -104,79 +120,79 @@ const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
   };
 
   const rarity = getRarityStars();
-  const eraInfo = getEraDisplay();
+  const eraColor = getTimelineColor();
+  const eraName = getEraName();
   const collection = getCollection();
   const roleIcon = getRoleIcon();
 
   return (
     <Link to={`/figures/${figure.id}`}>
       <div 
-        className="relative rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-all duration-300 hover:-translate-y-1 bg-gradient-to-br from-gray-50 via-white to-gray-50 border-2 border-gray-300"
+        className="relative rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-gray-200 bg-parchment group"
       >
-        {/* Rarity Stars */}
+        {/* Centered Rarity Stars */}
         <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10 flex gap-0.5">
           {[...Array(5)].map((_, i) => (
             <div
               key={i}
               className={`w-1.5 h-1.5 rounded-full ${
                 i < rarity 
-                  ? 'bg-gradient-to-br from-yellow-400 to-amber-600' 
-                  : 'bg-gray-300'
+                  ? 'bg-gradient-to-br from-yellow-500 to-amber-700 shadow-sm' 
+                  : 'bg-gray-300/50'
               }`}
             />
           ))}
         </div>    
 
         {/* Image Section */}
-        <div className="relative mt-6 mx-3 mb-2 rounded-md overflow-hidden" style={{ aspectRatio: '3/4' }}>
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/20 to-black/60 z-10"></div>
+        <div className="relative mt-6 mx-3 mb-2 rounded-md overflow-hidden shadow-inner border border-gray-300/50" style={{ aspectRatio: '3/4' }}>
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-black/10 to-black/40 z-10"></div>
           <img 
             src={figure.image} 
             alt={figure.name}
-            className="object-cover w-full h-full"
+            className="object-cover w-full h-full group-hover:scale-105 transition-transform duration-500"
             onError={(e) => {
               e.currentTarget.src = 'https://via.placeholder.com/300x400?text=Church+Father';
             }}
           />
-          {/* Inner Frame Border */}
-          <div className="absolute inset-1 border border-white/20 rounded-md pointer-events-none z-20"></div>
         </div>
 
         {/* Info Section */}
-        <div 
-          className="relative px-3 pb-3 bg-gradient-to-b from-gray-50 to-gray-100 border-t border-gray-300"
-        >
+        <div className="relative px-3 pb-3 pt-2 border-t border-gray-300/30 bg-parchment-light">
           {/* Name Banner */}
-          <div className="mb-2 pb-1 border-b border-gray-400/30">
-            <h3 className="text-sm font-serif text-gray-800 font-bold leading-tight truncate">
+          <div className="mb-2 pb-2 border-b border-gray-300/50">
+            <h3 className="text-sm font-serif text-gray-dark font-bold leading-tight truncate">
               {figure.name}
             </h3>
             {figure.roles[0] && (
-              <p className="text-xs text-gray-600 font-medium mt-0.5 truncate">
+              <p className="text-xs text-gray-medium font-medium mt-0.5 truncate">
                 {figure.roles[0]}
               </p>
             )}
           </div>
 
-          {/* Stats Grid - Now 2x2 layout */}
+          {/* Stats Grid */}
           <div className="grid grid-cols-2 gap-2 mb-2 text-[10px]">
             {/* Left Column */}
             <div className="space-y-1">
               <div className="flex items-start gap-1">
-                <Calendar className="w-2.5 h-2.5 text-gray-600 mt-0.5 flex-shrink-0" />
+                <Calendar className="w-2.5 h-2.5 text-gray-medium mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <div className="text-gray-500 font-medium truncate">Era:</div>
-                  <div className="text-gray-800 font-semibold leading-tight truncate">
-                    {eraInfo.name}
+                  <div className="text-gray-light font-medium truncate">Era:</div>
+                  <div 
+                    className="text-gray-dark font-semibold leading-tight truncate"
+                    style={{ color: eraColor }}
+                  >
+                    {eraName}
                   </div>
                 </div>
               </div>
               
               <div className="flex items-start gap-1">
-                <BookOpen className="w-2.5 h-2.5 text-gray-600 mt-0.5 flex-shrink-0" />
+                <BookOpen className="w-2.5 h-2.5 text-gray-medium mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <div className="text-gray-500 font-medium truncate">Lifespan:</div>
-                  <div className="text-gray-800 font-semibold leading-tight truncate">
+                  <div className="text-gray-light font-medium truncate">Lifespan:</div>
+                  <div className="text-gray-dark font-semibold leading-tight truncate">
                     {formatLifespan(figure.birthYear, figure.deathYear)}
                   </div>
                 </div>
@@ -186,21 +202,21 @@ const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
             {/* Right Column */}
             <div className="space-y-1">
               <div className="flex items-start gap-1">
-                <MapPin className="w-2.5 h-2.5 text-gray-600 mt-0.5 flex-shrink-0" />
+                <MapPin className="w-2.5 h-2.5 text-gray-medium mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <div className="text-gray-500 font-medium truncate">Location:</div>
-                  <div className="text-gray-800 font-semibold leading-tight truncate">
+                  <div className="text-gray-light font-medium truncate">Location:</div>
+                  <div className="text-gray-dark font-semibold leading-tight truncate">
                     {figure.location}
                   </div>
                 </div>
               </div>
 
               <div className="flex items-start gap-1">
-                <BookOpen className="w-2.5 h-2.5 text-gray-600 mt-0.5 flex-shrink-0" />
+                <Star className="w-2.5 h-2.5 text-gray-medium mt-0.5 flex-shrink-0" />
                 <div className="min-w-0">
-                  <div className="text-gray-500 font-medium truncate">Collection:</div>
-                  <div className="text-gray-800 font-semibold leading-tight truncate">
-                    {collection}
+                  <div className="text-gray-light font-medium truncate">Influence:</div>
+                  <div className="text-gray-dark font-semibold leading-tight truncate">
+                    {getInfluenceLevel()}
                   </div>
                 </div>
               </div>
@@ -209,14 +225,25 @@ const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
 
           {/* Role Icon */}
           <div className="absolute bottom-2 right-2">
-            <div className="w-8 h-8 bg-gradient-to-br from-gray-500 to-gray-700 rounded-full flex items-center justify-center shadow text-white text-sm font-bold">
+            <div 
+              className="w-8 h-8 rounded-full flex items-center justify-center shadow text-white text-xs font-bold border border-white/30"
+              style={{ 
+                backgroundColor: eraColor,
+                backgroundImage: `linear-gradient(135deg, ${eraColor} 0%, ${eraColor}80 100%)`
+              }}
+            >
               {roleIcon}
             </div>
           </div>
         </div>
 
-        {/* Decorative Bottom Border with era color */}
-        <div className={`h-0.5 ${eraInfo.color.replace('bg-', 'bg-gradient-to-r from-').replace('500', '400')} via-${eraInfo.color.replace('bg-', '').replace('500', '500')} to-${eraInfo.color.replace('bg-', '').replace('500', '600')}`}></div>
+        {/* Decorative Bottom Border */}
+        <div 
+          className="h-1"
+          style={{ 
+            background: `linear-gradient(90deg, ${eraColor}40 0%, ${eraColor} 50%, ${eraColor}40 100%)`
+          }}
+        ></div>
       </div>
     </Link>
   );
