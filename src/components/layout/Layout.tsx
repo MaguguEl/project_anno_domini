@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { useLocation } from 'react-router-dom';
 import Sidebar from './Sidebar';
-import Header from './Header';
+import MobileTopBar from './MobileTopBar';
+import MobileDrawer from './MobileDrawer';
 import Footer from './Footer';
 
 interface LayoutProps {
@@ -9,38 +10,53 @@ interface LayoutProps {
 }
 
 const Layout: React.FC<LayoutProps> = ({ children }) => {
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const location = useLocation();
+  const [isMobileDrawerOpen, setIsMobileDrawerOpen] = useState(false);
   
-  // Check if current route is the homepage
   const isHomePage = location.pathname === '/';
   
-  return (
-    <div className="flex h-screen bg-slate-50 dark:bg-navy-900">
-      {/* Mobile Sidebar - slides in from right and fills screen */}
-      <div className={`fixed inset-0 z-50 transform ${isSidebarOpen ? 'translate-x-0' : 'translate-x-full'} transition-transform duration-300 ease-in-out md:hidden`}>
-        <Sidebar onClose={() => setIsSidebarOpen(false)} />
-      </div>
-      
-      {/* Overlay for mobile sidebar */}
-      {isSidebarOpen && (
-        <div 
-          className="fixed inset-0 bg-black bg-opacity-50 z-40 md:hidden"
-          onClick={() => setIsSidebarOpen(false)}
-        />
-      )}
-      
-      {/* Main Content */}
-      <div className="flex-1 flex flex-col overflow-hidden">
-        {/* Conditionally render Header - hide on homepage */}
-        {!isHomePage && <Header onMenuClick={() => setIsSidebarOpen(true)} />}
-        
-        {/* Main Scrollable Area */}
-        <main className={`flex-1 overflow-auto ${isHomePage ? 'pt-0' : ''}`}>
+  // If it's the homepage, render only content and footer (no navigation)
+  if (isHomePage) {
+    return (
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-900 flex flex-col">
+        <main className="flex-1">
           {children}
-          <Footer />
         </main>
+        <Footer />
+      </div>
+    );
+  }
+  
+  // For all other pages, render with full navigation
+  return (
+    <div className="flex h-screen bg-gray-50 dark:bg-gray-900 overflow-hidden">
+      {/* Desktop Sidebar - Fixed width, no collapse */}
+      <aside className="hidden md:block w-64 flex-shrink-0">
+        <div className="h-full">
+          <Sidebar onClose={() => {}} />
+        </div>
+      </aside>
+
+      {/* Mobile Drawer */}
+      <MobileDrawer isOpen={isMobileDrawerOpen} onClose={() => setIsMobileDrawerOpen(false)} />
+      
+      {/* Main Content Area */}
+      <div className="flex-1 flex flex-col overflow-hidden">
+        {/* Mobile TopBar */}
+        <MobileTopBar onMenuClick={() => setIsMobileDrawerOpen(true)} />
         
+        {/* Main Content */}
+        <main className="flex-1 overflow-y-auto">
+          <div className="min-h-full flex flex-col">
+            {/* Page content */}
+            <div className="flex-1">
+              {children}
+            </div>
+            
+            {/* Footer  */}
+            <Footer />
+          </div>
+        </main>
       </div>
     </div>
   );
