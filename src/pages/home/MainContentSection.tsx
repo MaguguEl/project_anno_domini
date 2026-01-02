@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { BookOpen, Quote, User, Cake, Cross, Star, Send, Check, ChevronLeft, ChevronRight, ArrowRight, Users, Calendar } from 'lucide-react';
+import {Cake, Cross, Send, Check, ChevronLeft, ChevronRight, ArrowRight, } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
 import TimelineDisplay from '../../components/ui/TimelineDisplay';
@@ -89,7 +89,7 @@ const MainContentSection = () => {
     });
   };
 
-  const handleSubscribe = (e: React.FormEvent) => {
+  const handleSubscribe = (e: { preventDefault: () => void; }) => {
     e.preventDefault();
     setIsSubmitting(true);
     setTimeout(() => {
@@ -100,20 +100,19 @@ const MainContentSection = () => {
   };
 
   return (
-    <div id="main-content" className="bg-gray-50 pt-16">
+    <div id="main-content" className="bg-gray-50 pt-12 sm:pt-14 md:pt-16">
       {/* Main Content */}
-      <div className="py-8">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+      <div className="py-6 sm:py-7 md:py-8">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4">
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5 md:gap-6">
             {/* Left Column - Today's Content */}
-            <div className="lg:col-span-2 space-y-6">
+            <div className="lg:col-span-2 space-y-4 sm:space-y-5 md:space-y-6">
               {/* Events of the Day */}
               <div className="rounded-lg shadow-md overflow-hidden bg-white">
-                <div className="p-4">
-                  <div className="flex items-center justify-between mb-4">
+                <div className="p-3 sm:p-4">
+                  <div className="flex items-center justify-between mb-3 sm:mb-4">
                     <div className="flex items-center gap-2">
-                      <BookOpen className="w-5 h-5" style={{ color: '#725d4f' }} />
-                      <h2 className="text-xl font-serif" style={{ color: '#725d4f' }}>
+                      <h2 className="text-lg sm:text-xl font-serif" style={{ color: '#725d4f' }}>
                         On This Day
                       </h2>
                     </div>
@@ -122,44 +121,44 @@ const MainContentSection = () => {
                     <div className="flex items-center gap-1">
                       <button
                         onClick={goToPreviousDay}
-                        className="p-1.5 rounded-full hover:bg-gray-100 transition-colors"
+                        className="p-1 sm:p-1.5 rounded-full hover:bg-gray-100 transition-colors"
                         style={{ color: '#725d4f' }}
                         title="Previous day"
                       >
-                        <ChevronLeft size={18} />
+                        <ChevronLeft size={16} className="sm:w-[18px] sm:h-[18px]" />
                       </button>
                       
-                      <div className="px-2 py-1 bg-gray-100 rounded-full text-xs font-medium min-w-[80px] text-center" style={{ color: '#725d4f' }}>
+                      <div className="px-2 py-0.5 sm:py-1 bg-gray-100 rounded-full text-xs font-medium min-w-[70px] sm:min-w-[80px] text-center" style={{ color: '#725d4f' }}>
                         {months[currentDate.month - 1]?.substring(0, 3)} {currentDate.day}
                       </div>
                       
                       <button
                         onClick={goToNextDay}
-                        className="p-1.5 rounded-full hover:bg-gray-100 transition-colors"
+                        className="p-1 sm:p-1.5 rounded-full hover:bg-gray-100 transition-colors"
                         style={{ color: '#725d4f' }}
                         title="Next day"
                       >
-                        <ChevronRight size={18} />
+                        <ChevronRight size={16} className="sm:w-[18px] sm:h-[18px]" />
                       </button>
                     </div>
                   </div>
                   
                   {todayEvents.length === 0 ? (
-                    <div className="text-center py-8" style={{ color: '#725d4f' }}>
-                      <p className="text-sm">No historical events recorded for this day.</p>
-                      <Link to="/timeline" className="mt-2 text-sm hover:underline" style={{ color: '#725d4f' }}>
+                    <div className="text-center py-6 sm:py-8" style={{ color: '#725d4f' }}>
+                      <p className="text-xs sm:text-sm">No historical events recorded for this day.</p>
+                      <Link to="/timeline" className="mt-2 text-xs sm:text-sm hover:underline" style={{ color: '#725d4f' }}>
                         Browse the full timeline →
                       </Link>
                     </div>
                   ) : (
-                    <div className="bg-gray-50 rounded-lg p-3">
+                    <div className="bg-gray-50 rounded-lg p-2 sm:p-3">
                       <TimelineDisplay events={todayEvents} />
                     </div>
                   )}
                   
-                  <div className="mt-4 text-right">
-                    <Link to="/timeline" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
-                      View full timeline <ArrowRight size={14} />
+                  <div className="mt-3 sm:mt-4 text-right">
+                    <Link to="/timeline" className="flex items-center justify-end gap-1 hover:underline text-xs sm:text-sm" style={{ color: '#725d4f' }}>
+                      View full timeline <ArrowRight size={12} className="sm:w-[14px] sm:h-[14px]" />
                     </Link>
                   </div>
                 </div>
@@ -167,27 +166,26 @@ const MainContentSection = () => {
 
               {/* Quote of the Day */}
               <div className="rounded-lg shadow-md overflow-hidden bg-white">
-                <div className="p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <Quote className="w-5 h-5" style={{ color: '#725d4f' }} />
-                    <h2 className="text-xl font-serif" style={{ color: '#725d4f' }}>
+                <div className="p-3 sm:p-4">
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                    <h2 className="text-lg sm:text-xl font-serif" style={{ color: '#725d4f' }}>
                       Today's Quote 
                     </h2>
                   </div>
                   
-                  <blockquote className="border-l-3 pl-4 mb-4" style={{ borderColor: '#725d4f' }}>
-                    <p className="text-base italic mb-3 leading-relaxed" style={{ color: '#725d4f' }}>
+                  <blockquote className="border-l-2 sm:border-l-3 pl-3 sm:pl-4 mb-3 sm:mb-4" style={{ borderColor: '#725d4f' }}>
+                    <p className="text-sm sm:text-base italic mb-2 sm:mb-3 leading-relaxed" style={{ color: '#725d4f' }}>
                       "{quoteOfTheDay.text}"
                     </p>
                     <footer style={{ color: '#725d4f' }}>
-                      <cite className="font-medium text-sm">
+                      <cite className="font-medium text-xs sm:text-sm">
                         — {quoteOfTheDay.author}
                       </cite>
                       <div className="text-xs mt-1">
                         <span className="font-medium">Source:</span> {quoteOfTheDay.source}
                       </div>
                       {quoteOfTheDay.context && (
-                        <div className="text-xs mt-2 opacity-75">
+                        <div className="text-xs mt-1 sm:mt-2 opacity-75">
                           {quoteOfTheDay.context}
                         </div>
                       )}
@@ -195,8 +193,8 @@ const MainContentSection = () => {
                   </blockquote>
                   
                   <div className="text-right">
-                    <Link to="/quotes" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
-                      Explore more quotes <ArrowRight size={14} />
+                    <Link to="/quotes" className="flex items-center justify-end gap-1 hover:underline text-xs sm:text-sm" style={{ color: '#725d4f' }}>
+                      Explore more quotes <ArrowRight size={12} className="sm:w-[14px] sm:h-[14px]" />
                     </Link>
                   </div>
                 </div>
@@ -204,35 +202,31 @@ const MainContentSection = () => {
 
               {/* Notable Figures - Born/Died Today */}
               <div className="rounded-lg shadow-md overflow-hidden bg-white">
-                <div className="p-4">
-                  <div className="flex items-center gap-2 mb-4">
-                    <User className="w-5 h-5" style={{ color: '#725d4f' }} />
-                    <h2 className="text-xl font-serif" style={{ color: '#725d4f' }}>
+                <div className="p-3 sm:p-4">
+                  <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                    <h2 className="text-lg sm:text-xl font-serif" style={{ color: '#725d4f' }}>
                       Notable Figures
                     </h2>
                   </div>
                   
                   {/* Born Today */}
                   {bornToday.length > 0 && (
-                    <div className="mb-6">
-                      <div className="flex items-center gap-2 mb-3">
-                        <Cake className="w-4 h-4" style={{ color: '#725d4f' }} />
-                        <h3 className="text-base font-serif" style={{ color: '#725d4f' }}>
+                    <div className="mb-4 sm:mb-6">
+                      <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                        <Cake className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: '#725d4f' }} />
+                        <h3 className="text-sm sm:text-base font-serif" style={{ color: '#725d4f' }}>
                           Born on This Day
                         </h3>
                       </div>
-                      <div className="space-y-3">
+                      <div className="space-y-2 sm:space-y-3">
                         {bornToday.map((figure) => (
                           <Link key={figure.id} to={`/figures/${figure.id}`} className="block">
-                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                              <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
-                                <User className="w-6 h-6" style={{ color: '#725d4f' }} />
-                              </div>
+                            <div className="flex gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors">
                               <div className="flex-1 min-w-0">
-                                <h4 className="font-medium mb-1 text-sm hover:underline" style={{ color: '#725d4f' }}>
+                                <h4 className="font-medium mb-0.5 sm:mb-1 text-xs sm:text-sm hover:underline" style={{ color: '#725d4f' }}>
                                   {figure.name}
                                 </h4>
-                                <p className="text-xs mb-1" style={{ color: '#725d4f' }}>
+                                <p className="text-xs mb-0.5 sm:mb-1" style={{ color: '#725d4f' }}>
                                   Born in {figure.birthYear}
                                 </p>
                                 <div className="flex flex-wrap gap-1">
@@ -256,25 +250,22 @@ const MainContentSection = () => {
                   
                   {/* Died Today */}
                   {diedToday.length > 0 && (
-                    <div className={bornToday.length > 0 ? "pt-4 border-t border-gray-200" : ""}>
-                      <div className="flex items-center gap-2 mb-3">
-                        <Cross className="w-4 h-4" style={{ color: '#725d4f' }} />
-                        <h3 className="text-base font-serif" style={{ color: '#725d4f' }}>
+                    <div className={bornToday.length > 0 ? "pt-3 sm:pt-4 border-t border-gray-200" : ""}>
+                      <div className="flex items-center gap-2 mb-2 sm:mb-3">
+                        <Cross className="w-3.5 h-3.5 sm:w-4 sm:h-4" style={{ color: '#725d4f' }} />
+                        <h3 className="text-sm sm:text-base font-serif" style={{ color: '#725d4f' }}>
                           Died on This Day
                         </h3>
                       </div>
-                      <div className="space-y-3">
+                      <div className="space-y-2 sm:space-y-3">
                         {diedToday.map((figure) => (
                           <Link key={figure.id} to={`/figures/${figure.id}`} className="block">
-                            <div className="flex gap-3 p-3 rounded-lg hover:bg-gray-50 transition-colors">
-                              <div className="w-12 h-12 rounded-full overflow-hidden bg-gray-100 flex-shrink-0 flex items-center justify-center">
-                                <User className="w-6 h-6" style={{ color: '#725d4f' }} />
-                              </div>
+                            <div className="flex gap-2 sm:gap-3 p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors">
                               <div className="flex-1 min-w-0">
-                                <h4 className="font-medium mb-1 text-sm hover:underline" style={{ color: '#725d4f' }}>
+                                <h4 className="font-medium mb-0.5 sm:mb-1 text-xs sm:text-sm hover:underline" style={{ color: '#725d4f' }}>
                                   {figure.name}
                                 </h4>
-                                <p className="text-xs mb-1" style={{ color: '#725d4f', opacity: 0.7 }}>
+                                <p className="text-xs mb-0.5 sm:mb-1" style={{ color: '#725d4f', opacity: 0.7 }}>
                                   Died in {figure.deathYear}
                                 </p>
                                 <div className="flex flex-wrap gap-1">
@@ -297,17 +288,17 @@ const MainContentSection = () => {
                   )}
                   
                   {bornToday.length === 0 && diedToday.length === 0 && (
-                    <div className="text-center py-6" style={{ color: '#725d4f' }}>
-                      <p className="text-sm">No notable figures were born or died on this day.</p>
-                      <Link to="/figures" className="mt-2 text-sm hover:underline" style={{ color: '#725d4f' }}>
+                    <div className="text-center py-4 sm:py-6" style={{ color: '#725d4f' }}>
+                      <p className="text-xs sm:text-sm">No notable figures were born or died on this day.</p>
+                      <Link to="/figures" className="mt-2 text-xs sm:text-sm hover:underline" style={{ color: '#725d4f' }}>
                         Browse historical figures →
                       </Link>
                     </div>
                   )}
                   
-                  <div className="mt-4 text-right">
-                    <Link to="/figures" className="flex items-center justify-end gap-1 hover:underline text-sm" style={{ color: '#725d4f' }}>
-                      View all figures <ArrowRight size={14} />
+                  <div className="mt-3 sm:mt-4 text-right">
+                    <Link to="/figures" className="flex items-center justify-end gap-1 hover:underline text-xs sm:text-sm" style={{ color: '#725d4f' }}>
+                      View all figures <ArrowRight size={12} className="sm:w-[14px] sm:h-[14px]" />
                     </Link>
                   </div>
                 </div>
@@ -316,26 +307,25 @@ const MainContentSection = () => {
             
             {/* Right Column - Sticky Sidebar */}
             <div className="lg:sticky lg:top-20 lg:self-start">
-              <div className="bg-white rounded-lg p-4 shadow-md">
-                <div className="flex items-center gap-2 mb-4">
-                  <Star className="w-5 h-5" style={{ color: '#725d4f' }} />
-                  <h2 className="text-lg font-serif" style={{ color: '#725d4f' }}>
+              <div className="bg-white rounded-lg p-3 sm:p-4 shadow-md">
+                <div className="flex items-center gap-2 mb-3 sm:mb-4">
+                  <h2 className="text-base sm:text-lg font-serif" style={{ color: '#725d4f' }}>
                     Explore by Era
                   </h2>
                 </div>
                 <div className="space-y-2">
                   {eras.slice(0, 3).map((era) => (
                     <Link key={era.id} to={`/eras/${era.id}`} className="block">
-                      <div className="p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-[#8b2332]/20">
+                      <div className="p-2 sm:p-3 rounded-lg hover:bg-gray-50 transition-colors border border-transparent hover:border-[#8b2332]/20">
                         <div className="flex justify-between items-start mb-1">
-                          <div className="font-medium text-sm" style={{ color: '#725d4f' }}>
+                          <div className="font-medium text-xs sm:text-sm" style={{ color: '#725d4f' }}>
                             {era.name}
                           </div>
-                          <span className="text-xs px-1.5 py-0.5 bg-[#8b2332]/10 rounded-full" style={{ color: '#8b2332' }}>
+                          <span className="text-xs px-1.5 py-0.5 bg-[#8b2332]/10 rounded-full whitespace-nowrap ml-1" style={{ color: '#8b2332' }}>
                             Vol. {era.volume}
                           </span>
                         </div>
-                        <div className="text-xs mb-1" style={{ color: '#725d4f', opacity: 0.8 }}>
+                        <div className="text-xs mb-0.5 sm:mb-1" style={{ color: '#725d4f', opacity: 0.8 }}>
                           {era.startYear} - {era.endYear}
                         </div>
                         <p className="text-xs leading-relaxed" style={{ color: '#725d4f', opacity: 0.7 }}>
@@ -348,10 +338,9 @@ const MainContentSection = () => {
                   ))}
                 </div>
                 
-                <div className="mt-4 pt-4 border-t border-gray-300">
+                <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-gray-300">
                   <Link to="/eras" className="block">
-                    <div className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-[#8b2332] hover:bg-[#6d1a27] text-white rounded-lg transition-colors text-sm">
-                      <BookOpen size={16} />
+                    <div className="flex items-center justify-center gap-2 w-full py-2 px-4 bg-[#8b2332] hover:bg-[#6d1a27] text-white rounded-lg transition-colors text-xs sm:text-sm">
                       View All Eras
                     </div>
                   </Link>
@@ -363,30 +352,30 @@ const MainContentSection = () => {
       </div>
 
       {/* Newsletter Subscription Section */}
-      <div className="py-16 bg-gradient-to-br from-[#8b2332] to-[#6d1a27]">
-        <div className="max-w-7xl mx-auto px-4">
+      <div className="py-8 sm:py-12 md:py-16 bg-gradient-to-br from-[#8b2332] to-[#6d1a27]">
+        <div className="max-w-7xl mx-auto px-3 sm:px-4">
           <div className="max-w-5xl mx-auto">
             {/* Header */}
-            <div className="text-center mb-12">
-              <h2 className="text-3xl md:text-4xl font-serif text-white mb-4">
+            <div className="text-center mb-6 sm:mb-8 md:mb-12">
+              <h2 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-serif text-white mb-2 sm:mb-3 md:mb-4 px-2">
                 Stay Connected to Church History
               </h2>
-              <p className="text-lg text-white/90 max-w-2xl mx-auto">
+              <p className="text-sm sm:text-base md:text-lg text-white/90 max-w-2xl mx-auto px-2 sm:px-4">
                 Join thousands of history enthusiasts receiving daily insights from church history delivered straight to your inbox.
               </p>
             </div>
             
             {/* Form Section */}
-            <div className="bg-white rounded-2xl shadow-2xl p-8 md:p-12">
+            <div className="bg-white rounded-xl sm:rounded-2xl shadow-2xl p-4 sm:p-6 md:p-8 lg:p-12">
               {isSubscribed ? (
-                <div className="text-center py-8">
-                  <div className="inline-flex items-center justify-center w-16 h-16 bg-green-100 rounded-full mb-4">
-                    <Check className="w-8 h-8 text-green-600" />
+                <div className="text-center py-6 sm:py-8">
+                  <div className="inline-flex items-center justify-center w-12 h-12 sm:w-16 sm:h-16 bg-green-100 rounded-full mb-3 sm:mb-4">
+                    <Check className="w-6 h-6 sm:w-8 sm:h-8 text-green-600" />
                   </div>
-                  <h3 className="text-2xl font-serif text-gray-900 mb-2">
+                  <h3 className="text-xl sm:text-2xl font-serif text-gray-900 mb-2">
                     Welcome Aboard!
                   </h3>
-                  <p className="text-gray-600 mb-6">
+                  <p className="text-sm sm:text-base text-gray-600 mb-4 sm:mb-6 px-4">
                     Thank you for joining our community. Check your inbox for a confirmation email.
                   </p>
                   <button
@@ -398,20 +387,21 @@ const MainContentSection = () => {
                 </div>
               ) : (
                 <>
-                  <form onSubmit={handleSubscribe} className="mb-8">
-                    <div className="relative">
+                  <form onSubmit={handleSubscribe} className="mb-6 sm:mb-8">
+                    {/* Mobile: Stacked Layout */}
+                    <div className="flex flex-col gap-3 sm:hidden">
                       <input
                         type="email"
                         value={email}
                         onChange={(e) => setEmail(e.target.value)}
                         placeholder="Enter your email address"
                         required
-                        className="w-full py-4 pl-6 pr-36 rounded-full border-2 border-[#8b2332]/30 bg-white text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-[#8b2332] focus:border-[#8b2332] placeholder-gray-400"
+                        className="w-full py-3 px-4 rounded-lg border-2 border-[#8b2332]/30 bg-white text-gray-800 text-base focus:outline-none focus:ring-2 focus:ring-[#8b2332] focus:border-[#8b2332] placeholder-gray-400"
                       />
                       <button
                         type="submit"
                         disabled={isSubmitting}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 flex items-center justify-center gap-2 px-6 py-3 bg-[#8b2332] hover:bg-[#6d1a27] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold rounded-full transition-all duration-300 whitespace-nowrap text-sm shadow-lg hover:shadow-xl"
+                        className="w-full flex items-center justify-center gap-2 px-6 py-3 bg-[#8b2332] hover:bg-[#6d1a27] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold rounded-lg transition-all duration-300 text-base shadow-lg hover:shadow-xl"
                       >
                         {isSubmitting ? (
                           <>
@@ -426,48 +416,68 @@ const MainContentSection = () => {
                         )}
                       </button>
                     </div>
+                    
+                    {/* Desktop: Inline Layout */}
+                    <div className="relative hidden sm:block">
+                      <input
+                        type="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        placeholder="Enter your email address"
+                        required
+                        className="w-full py-3 sm:py-4 pl-4 sm:pl-6 pr-32 sm:pr-36 rounded-full border-2 border-[#8b2332]/30 bg-white text-gray-800 text-sm sm:text-base focus:outline-none focus:ring-2 focus:ring-[#8b2332] focus:border-[#8b2332] placeholder-gray-400"
+                      />
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="absolute right-1.5 sm:right-2 top-1/2 -translate-y-1/2 flex items-center justify-center gap-1.5 sm:gap-2 px-4 sm:px-6 py-2 sm:py-3 bg-[#8b2332] hover:bg-[#6d1a27] disabled:bg-gray-400 disabled:cursor-not-allowed text-white font-semibold rounded-full transition-all duration-300 whitespace-nowrap text-xs sm:text-sm shadow-lg hover:shadow-xl"
+                      >
+                        {isSubmitting ? (
+                          <>
+                            <div className="w-3.5 h-3.5 sm:w-4 sm:h-4 border-2 border-white border-t-transparent rounded-full animate-spin"></div>
+                            <span>Subscribing...</span>
+                          </>
+                        ) : (
+                          <>
+                            <Send size={14} className="sm:w-4 sm:h-4" />
+                            <span>Subscribe</span>
+                          </>
+                        )}
+                      </button>
+                    </div>
                   </form>
                   
                   {/* Benefits Section */}
-                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 bg-[#8b2332]/10 rounded-full flex items-center justify-center">
-                        <Calendar className="w-4 h-4 text-[#8b2332]" />
-                      </div>
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-3 sm:gap-4 md:gap-6">
+                    <div className="flex items-start gap-2 sm:gap-3">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Daily Insights</h4>
-                        <p className="text-sm text-gray-600">
+                        <h4 className="font-semibold text-gray-900 mb-1 text-xs sm:text-sm md:text-base">Daily Insights</h4>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                           Discover historical events that happened on this day throughout church history.
                         </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 bg-[#8b2332]/10 rounded-full flex items-center justify-center">
-                        <Quote className="w-4 h-4 text-[#8b2332]" />
-                      </div>
+                    <div className="flex items-start gap-2 sm:gap-3">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Inspiring Quotes</h4>
-                        <p className="text-sm text-gray-600">
+                        <h4 className="font-semibold text-gray-900 mb-1 text-xs sm:text-sm md:text-base">Inspiring Quotes</h4>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                           Read wisdom from church fathers, reformers, and notable Christian figures.
                         </p>
                       </div>
                     </div>
                     
-                    <div className="flex items-start gap-3">
-                      <div className="flex-shrink-0 w-8 h-8 bg-[#8b2332]/10 rounded-full flex items-center justify-center">
-                        <Users className="w-4 h-4 text-[#8b2332]" />
-                      </div>
+                    <div className="flex items-start gap-2 sm:gap-3">
                       <div>
-                        <h4 className="font-semibold text-gray-900 mb-1">Notable Figures</h4>
-                        <p className="text-sm text-gray-600">
+                        <h4 className="font-semibold text-gray-900 mb-1 text-xs sm:text-sm md:text-base">Notable Figures</h4>
+                        <p className="text-xs sm:text-sm text-gray-600 leading-relaxed">
                           Learn about influential theologians, martyrs, and leaders who shaped Christianity.
                         </p>
                       </div>
                     </div>
                   </div>
                   
-                  <p className="text-center text-sm text-gray-500 mt-6">
+                  <p className="text-center text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6">
                     We respect your privacy. Unsubscribe at any time.
                   </p>
                 </>

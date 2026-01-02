@@ -30,9 +30,6 @@ const StickyRibbon = () => {
       <div className="max-w-7xl mx-auto px-4">
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="w-6 h-6 bg-white/20 rounded-full flex items-center justify-center flex-shrink-0">
-              <Calendar className="w-3 h-3 text-white" />
-            </div>
             <h2 className="text-sm lg:text-lg font-serif font-semibold whitespace-nowrap">
               Today in Church History
             </h2>
