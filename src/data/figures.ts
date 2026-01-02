@@ -5,7 +5,7 @@ export const figures: Figure[] = [
   {
     id: 'paul',
     name: 'Apostle Paul',
-    image: 'https://images.pexels.com/photos/17229468/pexels-photo-17229468.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSQV7Ch3kNdMDp7fvDhpWB4atQ39SAvnzaLfX3VIptbPvfWwB_I96Ujr3zmg2ed2-okuV3508DigCOSSqhzGfxsQcGSGMJhtZ6hAoxxXJA&s=10',
     era: 'apostolic',
     location: 'Roman Empire',
     birthYear: 5,
@@ -32,7 +32,7 @@ export const figures: Figure[] = [
   {
     id: 'peter',
     name: 'Apostle Peter',
-    image: 'https://images.pexels.com/photos/8468470/pexels-photo-8468470.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://www.stpeters-leatherhead.co.uk/_site/data/files/images/auto_upload/3EEDA17B8531EB598938D46EDFB8BB38.png',
     era: 'apostolic',
     location: 'Rome, Italy',
     birthYear: 1,
@@ -57,7 +57,7 @@ export const figures: Figure[] = [
   {
     id: 'stephen',
     name: 'Stephen the Martyr',
-    image: 'https://images.pexels.com/photos/6969831/pexels-photo-6969831.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://images.squarespace-cdn.com/content/v1/5a11f56c9f8dcec2f4f298b6/1609086189505-2OKLOANPB4S4YE1TBEM5/st-stephen-icon-730.jpg',
     era: 'apostolic',
     location: 'Jerusalem',
     deathYear: 34,
@@ -81,7 +81,7 @@ export const figures: Figure[] = [
   {
     id: 'josephus',
     name: 'Flavius Josephus',
-    image: 'https://images.pexels.com/photos/8468500/pexels-photo-8468500.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/7/73/Joseph%2C_son_of_Gorian%2C_called_Flavius_Josephus_%28cropped%29.jpg',
     era: 'apostolic',
     location: 'Jerusalem, Rome',
     birthYear: 37,
@@ -106,7 +106,7 @@ export const figures: Figure[] = [
   {
     id: 'ignatius',
     name: 'Ignatius of Antioch',
-    image: 'https://images.pexels.com/photos/8468471/pexels-photo-8468471.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://blogs.ancientfaith.com/wholecounsel/wp-content/uploads/sites/37/2019/12/48423863_10212862914551765_7428520867602104320_o.jpg',
     era: 'ante-nicene',
     location: 'Antioch, Syria',
     birthYear: 35,
@@ -131,7 +131,7 @@ export const figures: Figure[] = [
   {
     id: 'justin-martyr',
     name: 'Justin Martyr',
-    image: 'https://images.pexels.com/photos/8468472/pexels-photo-8468472.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://takayamaukon.com/wp-content/uploads/2020/04/justyn4.jpg',
     era: 'ante-nicene',
     location: 'Rome, Italy',
     birthYear: 100,
@@ -156,7 +156,7 @@ export const figures: Figure[] = [
   {
     id: 'irenaeus',
     name: 'Irenaeus of Lyon',
-    image: 'https://images.pexels.com/photos/8468473/pexels-photo-8468473.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://lonelypilgrim.com/wp-content/uploads/2013/06/irenaeus.jpg',
     era: 'ante-nicene',
     location: 'Lyon, France',
     birthYear: 130,
@@ -202,7 +202,7 @@ export const figures: Figure[] = [
   {
     id: 'origen',
     name: 'Origen',
-    image: 'https://images.pexels.com/photos/8468475/pexels-photo-8468475.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://dialecticspiritualism.com/wp-content/uploads/2017/03/origen.jpg',
     era: 'ante-nicene',
     location: 'Alexandria, Egypt',
     birthYear: 185,
@@ -227,7 +227,7 @@ export const figures: Figure[] = [
   {
     id: 'constantine',
     name: 'Constantine the Great',
-    image: 'https://images.pexels.com/photos/8468476/pexels-photo-8468476.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://cdn11.bigcommerce.com/s-30c33/images/stencil/1280x1280/products/3777/5874/SaintConstanineTheGreatSmall__14517.1660149149.jpg?c=2',
     era: 'nicene',
     location: 'Constantinople (Istanbul)',
     birthYear: 272,
@@ -252,7 +252,7 @@ export const figures: Figure[] = [
   {
     id: 'eusebius',
     name: 'Eusebius of Caesarea',
-    image: 'https://images.pexels.com/photos/8468501/pexels-photo-8468501.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://www.laphamsquarterly.org/sites/default/files/styles/tall_rectangle_custom_user_small_2x/public/images/contributor/eusebius_360x450.jpg?itok=M4B9kZ5G&timestamp=1419349238',
     era: 'nicene',
     location: 'Caesarea, Palestine',
     birthYear: 260,
@@ -277,7 +277,7 @@ export const figures: Figure[] = [
   {
     id: 'athanasius',
     name: 'Athanasius of Alexandria',
-    image: 'https://images.pexels.com/photos/8468477/pexels-photo-8468477.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQokupd932Cmtq70WGwWMUiOlHlH6fGsgvNdUBmIGycaMnGZ5CaCXfSziLmww_Q05TwY_Npf0gKTq-bUDjCKv4lFD_zdaHQGUd1b_aNow&s=10',
     era: 'nicene',
     location: 'Alexandria, Egypt',
     birthYear: 296,
@@ -302,7 +302,7 @@ export const figures: Figure[] = [
   {
     id: 'augustine',
     name: 'Augustine of Hippo',
-    image: 'https://images.pexels.com/photos/5766927/pexels-photo-5766927.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRITkjNrt2uhGfnXZhqUCzwExdq49X3hCx_pwqZyxNPzg-mhiNvmRbe2qhFaA73O8p7J-7EnhyOF9LwK8d6mU4P5nf15JiC8YjYWm2tz1U&s=10',
     era: 'nicene',
     location: 'Hippo Regius, North Africa',
     birthYear: 354,
@@ -329,7 +329,7 @@ export const figures: Figure[] = [
   {
     id: 'jerome',
     name: 'Jerome',
-    image: 'https://images.pexels.com/photos/8468478/pexels-photo-8468478.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://delasalle.org/wp-content/uploads/2019/09/St-Jerome.jpg',
     era: 'nicene',
     location: 'Bethlehem, Palestine',
     birthYear: 347,
@@ -354,7 +354,7 @@ export const figures: Figure[] = [
   {
     id: 'john-chrysostom',
     name: 'John Chrysostom',
-    image: 'https://images.pexels.com/photos/8468479/pexels-photo-8468479.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://s3.amazonaws.com/cdn.monasteryicons.com/images/popup/st-john-chrysostom-icon-708.jpg',
     era: 'nicene',
     location: 'Constantinople (Istanbul)',
     birthYear: 349,
@@ -381,7 +381,7 @@ export const figures: Figure[] = [
   {
     id: 'gregory-great',
     name: 'Gregory the Great',
-    image: 'https://images.pexels.com/photos/8468480/pexels-photo-8468480.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://s3.amazonaws.com/cdn.monasteryicons.com/images/popup/st-gregory-the-great-icon-706.jpg',
     era: 'medieval',
     location: 'Rome, Italy',
     birthYear: 540,
@@ -406,7 +406,7 @@ export const figures: Figure[] = [
   {
     id: 'bede',
     name: 'Bede the Venerable',
-    image: 'https://images.pexels.com/photos/8468502/pexels-photo-8468502.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://images.squarespace-cdn.com/content/v1/658034cdfee1961d9869151c/946c3555-7097-4163-a8b4-6e191d4c4587/StBedeFullIcon.png',
     era: 'medieval',
     location: 'Jarrow, England',
     birthYear: 673,
@@ -431,7 +431,7 @@ export const figures: Figure[] = [
   {
     id: 'charlemagne',
     name: 'Charlemagne',
-    image: 'https://images.pexels.com/photos/8468481/pexels-photo-8468481.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e9/Charles_I%2C_Holy_Roman_Emperor.jpg/250px-Charles_I%2C_Holy_Roman_Emperor.jpg',
     era: 'medieval',
     location: 'Aachen, Germany',
     birthYear: 742,
@@ -481,7 +481,7 @@ export const figures: Figure[] = [
   {
     id: 'francis-assisi',
     name: 'Francis of Assisi',
-    image: 'https://images.pexels.com/photos/8468483/pexels-photo-8468483.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/3/33/Philip_Fruytiers_-_St._Francis_of_Assisi.jpg',
     era: 'medieval',
     location: 'Assisi, Italy',
     birthYear: 1181,
@@ -500,29 +500,6 @@ export const figures: Figure[] = [
         source: 'Attributed',
         figureId: 'francis-assisi',
         context: 'Francis\'s emphasis on living out the Gospel through actions.'
-      }
-    ]
-  },
-  {
-    id: 'matthew-paris',
-    name: 'Matthew Paris',
-    image: 'https://images.pexels.com/photos/8468503/pexels-photo-8468503.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    era: 'medieval',
-    location: 'St Albans, England',
-    birthYear: 1200,
-    deathYear: 1259,
-    description: 'Matthew Paris was an English Benedictine monk and chronicler at St Albans Abbey. He is considered one of the most important medieval historians, known for his detailed chronicles of 13th-century England and Europe.',
-    roles: ['Monk', 'Chronicler', 'Historian', 'Artist'],
-    influence: 'Matthew Paris\'s chronicles provide detailed accounts of medieval political and religious events, including the Crusades, papal politics, and English royal history. His work is invaluable for understanding 13th-century European Christianity.',
-    events: ['seventh-crusade', 'fourth-lateran-council'],
-    documents: ['chronica-majora', 'historia-anglorum'],
-    quotes: [
-      {
-        id: 'matthew-quote-1',
-        text: 'The truth of history ought to be sacred to the writer.',
-        source: 'Chronica Majora',
-        figureId: 'matthew-paris',
-        context: 'Matthew Paris expressing his commitment to historical accuracy in his chronicles.'
       }
     ]
   },
@@ -556,7 +533,7 @@ export const figures: Figure[] = [
   {
     id: 'peter-hermit',
     name: 'Peter the Hermit',
-    image: 'https://images.pexels.com/photos/8468485/pexels-photo-8468485.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://historyofchristianitypodcast.com/wp-content/uploads/2025/07/Peter-the-Hermit.jpg',
     era: 'medieval',
     location: 'Amiens, France',
     birthYear: 1050,
@@ -579,7 +556,7 @@ export const figures: Figure[] = [
   {
     id: 'godfrey-bouillon',
     name: 'Godfrey of Bouillon',
-    image: 'https://images.pexels.com/photos/8468486/pexels-photo-8468486.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://www.meisterdrucke.us/kunstwerke/1260px/Unknown_artist_-_Portrait_of_Godfrey_of_Bouillon_%28Godefroy_de_Bouillon%29_%28104061-1100%29_Frankish_kn_-_%28MeisterDrucke-954731%29.jpg',
     era: 'medieval',
     location: 'Jerusalem, Holy Land',
     birthYear: 1060,
@@ -627,7 +604,7 @@ export const figures: Figure[] = [
   {
     id: 'hugh-payens',
     name: 'Hugh de Payens',
-    image: 'https://images.pexels.com/photos/8468488/pexels-photo-8468488.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fe/Hugues_de_Payens_%28Versailles%29.jpg/960px-Hugues_de_Payens_%28Versailles%29.jpg',
     era: 'medieval',
     location: 'Jerusalem, Holy Land',
     birthYear: 1070,
@@ -650,7 +627,7 @@ export const figures: Figure[] = [
   {
     id: 'bernard-clairvaux',
     name: 'Bernard of Clairvaux',
-    image: 'https://images.pexels.com/photos/8468489/pexels-photo-8468489.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6Tcguas5uja_BcaLYSKoSnmjzlUreYD3EPSXPs6cZDCCn6JtR4qhabrgFyzvI1J1_iK1l_1j_ej_3fSp9YXQ-8OAx4DBZ7Tvan5XpDcw&s=10',
     era: 'medieval',
     location: 'Clairvaux, France',
     birthYear: 1090,
@@ -673,34 +650,9 @@ export const figures: Figure[] = [
     ]
   },
   {
-    id: 'saladin',
-    name: 'Saladin',
-    image: 'https://images.pexels.com/photos/8468490/pexels-photo-8468490.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
-    era: 'medieval',
-    location: 'Cairo, Egypt & Damascus, Syria',
-    birthYear: 1137,
-    deathYear: 1193,
-    deathMonth: 3,
-    deathDay: 4,
-    description: 'Saladin was the Kurdish Muslim leader who recaptured Jerusalem from the Crusaders in 1187. Known for his military skill and chivalrous treatment of enemies, he became a legendary figure in both Islamic and Christian traditions.',
-    roles: ['Sultan', 'Military Leader', 'Unifier', 'Diplomat'],
-    influence: 'Saladin\'s reconquest of Jerusalem and his conduct during the Crusades earned him respect from both Muslims and Christians, and his legacy influenced ideals of chivalry and honorable warfare.',
-    events: ['saladin-takes-jerusalem', 'third-crusade'],
-    documents: [],
-    quotes: [
-      {
-        id: 'saladin-quote-1',
-        text: 'I warn you against shedding blood, indulging in it and making a habit of it.',
-        source: 'Letter to his son',
-        figureId: 'saladin',
-        context: 'Saladin\'s advice on the responsible use of power and violence.'
-      }
-    ]
-  },
-  {
     id: 'richard-lionheart',
     name: 'Richard the Lionheart',
-    image: 'https://images.pexels.com/photos/8468491/pexels-photo-8468491.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/4/43/Richard_coeur_de_lion.jpg',
     era: 'medieval',
     location: 'England & Holy Land',
     birthYear: 1157,
@@ -725,7 +677,7 @@ export const figures: Figure[] = [
   {
     id: 'frederick-barbarossa',
     name: 'Frederick Barbarossa',
-    image: 'https://images.pexels.com/photos/8468492/pexels-photo-8468492.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8b/Friedrich_I._Barbarossa_%28Christian_Siedentopf%2C_1847%29.jpg/250px-Friedrich_I._Barbarossa_%28Christian_Siedentopf%2C_1847%29.jpg',
     era: 'medieval',
     location: 'Holy Roman Empire',
     birthYear: 1122,
@@ -750,7 +702,7 @@ export const figures: Figure[] = [
   {
     id: 'louis-ix',
     name: 'Louis IX (Saint Louis)',
-    image: 'https://images.pexels.com/photos/8468493/pexels-photo-8468493.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://s3.amazonaws.com/cdn.monasteryicons.com/images/popup/143-st-louis-icon.jpg',
     era: 'medieval',
     location: 'Paris, France & Holy Land',
     birthYear: 1214,
@@ -775,7 +727,7 @@ export const figures: Figure[] = [
   {
     id: 'william-tyre',
     name: 'William of Tyre',
-    image: 'https://images.pexels.com/photos/8468504/pexels-photo-8468504.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://media.gettyimages.com/id/526581480/photo/william-of-tyre.jpg?s=1024x1024&w=gi&k=20&c=B0bAQ1pa0jDKc3QGyEcpu1OASOuWMri-Qo5pB7evG2s=',
     era: 'medieval',
     location: 'Tyre, Holy Land',
     birthYear: 1130,
@@ -800,7 +752,7 @@ export const figures: Figure[] = [
   {
     id: 'martin-luther',
     name: 'Martin Luther',
-    image: 'https://images.pexels.com/photos/6508135/pexels-photo-6508135.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://www.musee-reforme.ch/wp-content/uploads/2022/12/Luther-par-Cranach-txt.png.webp',
     era: 'reformation',
     location: 'Wittenberg, Germany',
     birthYear: 1483,
@@ -827,7 +779,7 @@ export const figures: Figure[] = [
   {
     id: 'john-calvin',
     name: 'John Calvin',
-    image: 'https://images.pexels.com/photos/8468494/pexels-photo-8468494.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcStwJbCUFSq676uRO267IKoglDtf_6cLFbPfU2BE8L7qkh9YoNC2lWoubcVYr44tL2CNxoWJoUzpEgnCBRM0-cDLfI3XHf7D7k3ywMz1g&s=10',
     era: 'reformation',
     location: 'Geneva, Switzerland',
     birthYear: 1509,
@@ -852,7 +804,7 @@ export const figures: Figure[] = [
   {
     id: 'ignatius-loyola',
     name: 'Ignatius of Loyola',
-    image: 'https://images.pexels.com/photos/8468495/pexels-photo-8468495.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://www.catholicartandjewelry.com/cdn/shop/files/5ed6d4a8-a276-5c09-ab0c-e14d2a18d873.jpg?v=1693713643&width=1946',
     era: 'reformation',
     location: 'Rome, Italy',
     birthYear: 1491,
@@ -879,7 +831,7 @@ export const figures: Figure[] = [
   {
     id: 'john-wesley',
     name: 'John Wesley',
-    image: 'https://images.pexels.com/photos/8468496/pexels-photo-8468496.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://www.wesleysheritage.org.uk/os/wp-content/uploads/2016/12/Wesley-by-T.-Horsley.jpg',
     era: 'modern',
     location: 'England',
     birthYear: 1703,
@@ -904,7 +856,7 @@ export const figures: Figure[] = [
   {
     id: 'karl-barth',
     name: 'Karl Barth',
-    image: 'https://images.pexels.com/photos/8468497/pexels-photo-8468497.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://www.christianitytoday.com/wp-content/uploads/2017/10/79435.jpg',
     era: 'modern',
     location: 'Basel, Switzerland',
     birthYear: 1886,
@@ -929,7 +881,7 @@ export const figures: Figure[] = [
   {
     id: 'philip-schaff',
     name: 'Philip Schaff',
-    image: 'https://images.pexels.com/photos/8468505/pexels-photo-8468505.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://christianhistoryinstitute.org/storage/y9KCDrL9iJGrhqm0VFZfHkOumDVA7NwmUtCWg9vM.jpg',
     era: 'modern',
     location: 'New York, USA',
     birthYear: 1819,
@@ -954,7 +906,7 @@ export const figures: Figure[] = [
   {
     id: 'jaroslav-pelikan',
     name: 'Jaroslav Pelikan',
-    image: 'https://images.pexels.com/photos/8468507/pexels-photo-8468507.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=750&w=1260',
+    image: 'https://boulderbachbeat.wordpress.com/wp-content/uploads/2015/01/pelikancrop.jpg',
     era: 'modern',
     location: 'New Haven, USA',
     birthYear: 1923,
@@ -975,7 +927,31 @@ export const figures: Figure[] = [
         context: 'Pelikan\'s famous distinction between healthy tradition and rigid traditionalism.'
       }
     ]
-  }
+  },
+  {
+  id: 'elvis-magugu',
+  name: 'Elvis Magugu',
+  image: 'https://substackcdn.com/image/fetch/$s_!AdqX!,f_auto,q_auto:good,fl_progressive:steep/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fc4c2af8c-c502-43bf-8cb3-fcdf16a21f35_2308x2308.jpeg',
+  era: 'modern',
+  location: 'Lilongwe, Malawi',
+  birthYear: 1999,
+  deathYear: null,
+  description: 'Elvis Magugu is a Malawian modern poet, essayist, and digital writer based in Lilongwe. Through reflective prose and poetry, he explores faith, nobility, history, and the human spirit. He is also the creator of this platform.',
+  roles: ['Poet', 'Essayist', 'Chronicler', 'Digital Writer'],
+  influence: 'Emerging influence through contemporary literature and digital platforms.',
+  events: [],
+  documents: [],
+  quotes: [
+    {
+      id: 'elvis-quote-1',
+      text: 'Grace has kept me where Sin would have devoured me.',
+      source: 'Pietas',
+      figureId: 'elvis-magugu',
+      context: 'A reflective statement expressing spiritual contemplation.'
+    }
+  ]
+}
+
 ];
 
 export const getFiguresByBirthDay = (month: number, day: number): Figure[] => {

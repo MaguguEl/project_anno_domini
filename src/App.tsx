@@ -21,6 +21,7 @@ import BookmarksPage from './pages/sources/BookmarksPage';
 import AboutPage from './pages/misc/AboutPage';
 import PrivacyPage from './pages/misc/PrivacyPage';
 import TermsPage from './pages/misc/TermsPage';
+import NotFoundPage from './pages/misc/NotFoundPage';
 
 function App() {
   return (
@@ -48,6 +49,8 @@ function App() {
             <Route path="/about" element={<AboutPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
+            
+            <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Layout>
       </Router>
