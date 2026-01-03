@@ -22,6 +22,7 @@ import AboutPage from './pages/misc/AboutPage';
 import PrivacyPage from './pages/misc/PrivacyPage';
 import TermsPage from './pages/misc/TermsPage';
 import NotFoundPage from './pages/misc/NotFoundPage';
+import HistoryFeedPage from './pages/misc/HistoryFeedPage';
 
 function App() {
   return (
@@ -30,6 +31,7 @@ function App() {
         <Layout>
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/feed" element={<HistoryFeedPage />} />
             <Route path="/timeline" element={<TimelinePage />} />
             <Route path="/figures" element={<FiguresPage />} />
             <Route path="/documents" element={<DocumentsPage />} />

@@ -27,10 +27,10 @@ const Sidebar: React.FC<SidebarProps> = ({
   const location = useLocation();
   
   const navItems = [
-    { path: '/', icon: Home, label: 'Home' },
-    { path: '/figures', icon: Users, label: 'Fathers' },
-    { path: '/documents', icon: FileText, label: 'Texts' },
+    { path: '/feed', icon: Home, label: 'Home' },
     { path: '/timeline', icon: Clock, label: 'Timelines' },
+    { path: '/figures', icon: Users, label: 'Figures' },
+    { path: '/documents', icon: FileText, label: 'Texts' },
     { path: '/eras', icon: Calendar, label: 'Eras' },
     { path: '/quotes', icon: MessageSquare, label: 'Quotes' },
     { path: '/sources', icon: Library, label: 'Sources' }
@@ -87,12 +87,12 @@ const Sidebar: React.FC<SidebarProps> = ({
                 onClick={onClose}
                 className={`w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-colors ${
                   active
-                    ? 'bg-burgundy-50 dark:bg-burgundy-900/20 text-burgundy-700 dark:text-burgundy-300'
-                    : 'text-navy-700 dark:text-navy-300 hover:bg-gray-50 dark:hover:bg-navy-700'
+                    ? 'font-bold bg-active text-burgundy-700'
+                    : ' text-navy-700 hover:bg-active hover:text-burgundy-700'
                 }`}
               >
                 <Icon className="w-5 h-5 flex-shrink-0" />
-                <span className="truncate">{label}</span>
+                <span className="text-base truncate">{label}</span>
               </Link>
             );
           })}
