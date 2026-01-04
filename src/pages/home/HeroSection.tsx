@@ -1,5 +1,5 @@
 import React from 'react';
-import { Shield, Calendar, Users, FileText, MessageSquare, Library, Clock } from 'lucide-react';
+import { Shield, Calendar, Users, MessageSquare, Library, Clock, Home } from 'lucide-react';
 import SearchEngine from './utility/SearchEngine';
 import NavButton from './utility/NavButton';
 import StickyRibbon from './utility/StickyRibbon';
@@ -8,18 +8,23 @@ const HeroSection = () => {
   // Navigation buttons data array
   const navButtons = [
     {
+      icon: <Home className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />,
+      title: 'Home',
+      to: '/feed'
+    },
+    {
       icon: <Clock className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />,
       title: 'Timelines',
       to: '/timeline'
     },
     {
       icon: <Users className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />,
-      title: 'Fathers',
+      title: 'Figures',
       to: '/figures'
     },
     {
-      icon: <FileText className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />,
-      title: 'Texts',
+      icon: <Library className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />,
+      title: 'Library',
       to: '/documents'
     },
     {
@@ -32,11 +37,6 @@ const HeroSection = () => {
       title: 'Quotes',
       to: '/quotes'
     },
-    {
-      icon: <Library className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />,
-      title: 'Sources',
-      to: '/sources'
-    }
   ];
 
   return (

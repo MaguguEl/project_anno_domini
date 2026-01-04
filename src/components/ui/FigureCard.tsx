@@ -10,7 +10,7 @@ interface FigureCardProps {
   index?: number;
 }
 
-const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
+const FigureCard: React.FC<FigureCardProps> = ({ figure }) => {
   const { eras, getEraTimelineColor } = useData();
 
   // Find the era object for this figure
@@ -122,13 +122,12 @@ const FigureCard: React.FC<FigureCardProps> = ({ figure, index = 0 }) => {
   const rarity = getRarityStars();
   const eraColor = getTimelineColor();
   const eraName = getEraName();
-  const collection = getCollection();
   const roleIcon = getRoleIcon();
 
   return (
     <Link to={`/figures/${figure.id}`}>
       <div 
-        className="relative rounded-lg overflow-hidden shadow-md hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-2 border-gray-200 bg-parchment group"
+        className="relative rounded-md overflow-hidden hover:shadow-md transition-all duration-300 hover:-translate-y-1 border-2 border-gray-200 bg-parchment group"
       >
         {/* Centered Rarity Stars */}
         <div className="absolute top-2 left-1/2 transform -translate-x-1/2 z-10 flex gap-0.5">

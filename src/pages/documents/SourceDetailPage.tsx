@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, ExternalLink, Download, BookmarkPlus, Users, Calendar, Tag, Globe, FileText, Check, BookOpen, Archive, Layers, Clock } from 'lucide-react';
+import { ArrowLeft, ExternalLink, Download, BookmarkPlus, Users, Calendar, Globe, FileText, Check, BookOpen, Archive, Layers, Clock } from 'lucide-react';
 import { useData } from '../../context/DataContext';
 
 const SourceDetailPage: React.FC = () => {

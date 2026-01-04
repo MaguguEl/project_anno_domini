@@ -1,3 +1,4 @@
+import { LucideIcon } from "lucide-react";
 
 export interface Event {
   id: string;
@@ -53,7 +54,8 @@ export interface Document {
     type?: 'creed' | 'confession' | 'treatise' | 'sermon' | 'letter' | 'book' | 'thesis' | 'declaration' | 'covenant' | 'manual'; 
   category?: 'primary' | 'secondary' | 'historical' | 'theological'; 
   tags?: string[];                
-  summary?: string;              
+  summary?: string;     
+  significance?: string;                     
 }
 
 export interface EraCharacteristics {
@@ -110,16 +112,14 @@ export interface Quote {
   context?: string;
 }
 
-export type ThemeMode = 'light' | 'dark';
-
 export interface FederatedSource {
   id: string;
   title: string;
   author?: string;
   date?: string;
-  century?: number;
+  century: number;
   type: 'text' | 'letter' | 'decree' | 'sermon' | 'book';
-  category: 'primary' | 'fathers' | 'books' | 'archives' | 'commentaries';
+  category: 'books' | 'archives' | 'commentaries';  
   summary: string;
   externalUrl: string;
   hostedOn: string;
@@ -128,7 +128,28 @@ export interface FederatedSource {
   relatedEras: string[];
   relatedEvents: string[];
   tags: string[];
+  repository?: string;
+  contributor?: string;
+  reliability?: string;
 }
+
+
+export interface Category {
+  id: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  color: string;
+
+  /** Header & filter color system (matches gradient) */
+  textColor: string;        // main heading text
+  mutedTextColor: string;   // descriptions / helper text
+  iconColor: string;        // icons
+  accentColor: string;      // pills, counters, highlights
+
+  stats: string;
+}
+
 
 export interface SourceBookmark {
   id: string;
@@ -166,3 +187,20 @@ export interface RelatedEntities {
 }
 
 export type EntityType = 'era' | 'figure' | 'document' | 'event' | 'source';
+
+export interface FeedItem {
+  id: string;
+  type: 'event' | 'quote' | 'source' | 'document';
+  author?: string;
+  handle?: string;
+  content: string;
+  source?: string;
+  sourceUrl?: string;
+  detailUrl?: string;
+  timestamp: Date;
+  likes: number;
+  shares: number;
+  comments: number;
+  isExpanded?: boolean;
+  metadata?: any;
+}

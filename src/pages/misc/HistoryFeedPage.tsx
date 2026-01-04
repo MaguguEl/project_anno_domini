@@ -17,7 +17,6 @@ import {
   X,
   Share,
   Bookmark,
-  ArrowRight,
   Zap,
   Copy
 } from 'lucide-react';
@@ -941,10 +940,9 @@ const HistoryFeedPage: React.FC = () => {
 
                 <Link
                   to="/documents"
-                  className="w-full py-2.5 px-4 bg-transparent hover:bg-burgundy-50 dark:hover:bg-burgundy-900/10 border border-burgundy-200 dark:border-burgundy-700 rounded-lg flex items-center justify-center gap-2 text-burgundy-700 dark:text-burgundy-300 hover:text-burgundy-800 dark:hover:text-burgundy-200 transition-all group"
+                  className="text-burgundy-700 hover:text-burgundy-800 transition-all group"
                 >
                   <span className="font-medium text-sm">View All Documents</span>
-                  <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
                 </Link>
               </div>
 
@@ -975,7 +973,7 @@ const HistoryFeedPage: React.FC = () => {
                   </div>
                   <div className="pt-2">
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                      © 2026 Anno Domini. All rights reserved.
+                      © new Date().getFullYear() Anno Domini. All rights reserved.
                     </p>
                   </div>
                 </div>

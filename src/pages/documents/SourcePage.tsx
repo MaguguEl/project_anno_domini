@@ -11,10 +11,7 @@ const SourcePage: React.FC = () => {
   const { 
     getSourcesByCategory, 
     getCategoryById, 
-    getCategoryGradient,
-    getAllTags,
-    getSourcesByTag 
-  } = useData();
+    getCategoryGradient  } = useData();
   
   const [timeFilter, setTimeFilter] = useState<string>('all');
   const [typeFilter, setTypeFilter] = useState<string>('all');

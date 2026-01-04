@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import { Filter, X, Calendar, Clock, Layers, ChevronDown, ChevronUp, Grid } from 'lucide-react';
-import { Link } from 'react-router-dom';
 import { useData } from '../../context/DataContext';
 import TimelineDisplay from '../../components/ui/TimelineDisplay';
 
@@ -91,7 +90,7 @@ const TimelinePage: React.FC = () => {
         >
           <div className="flex items-center gap-2">
             <Layers className="w-5 h-5 text-navy-900" />
-            <h3 className="text-smfont-bold text-navy-900">Filter by Era</h3>
+            <h3 className="text-sm font-bold text-navy-900">Filter by Era</h3>
           </div>
           {expandedSection === 'era' ? (
             <ChevronUp className="w-5 h-5 text-navy-900" />
@@ -228,58 +227,81 @@ const TimelinePage: React.FC = () => {
   );
   
   return (
-    <div className="min-h-screen bg-slate-50 dark:bg-navy-900">
-           {/* Header */}
-      <div className="relative overflow-hidden bg-gradient-to-br from-burgundy-800 via-burgundy-900 to-burgundy-950 dark:from-burgundy-900 dark:via-burgundy-950 dark:to-black">
-        <div className="absolute inset-0 opacity-10">
-          <div className="absolute top-10 left-10 w-32 h-32 sm:w-48 sm:h-48 bg-white rounded-full blur-3xl"></div>
-          <div className="absolute bottom-10 right-10 w-40 h-40 sm:w-56 sm:h-56 bg-white rounded-full blur-3xl"></div>
-        </div>
-        
-        <div className="relative container-max px-3 sm:px-4 py-6 sm:py-8 md:py-12 lg:py-16">
-          <div className="max-w-4xl">
-            <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-white mb-2 sm:mb-3 md:mb-4 leading-tight">
-              Historical Timelines
-            </h1>
-            <p className="text-xs sm:text-sm md:text-base text-burgundy-100 leading-relaxed max-w-3xl">
-              Explore the major events of Church history from the apostolic Church to the present. 
-              Filter by era, browse by century, or select specific years to explore.
-            </p>
-            
-            {/* Stats */}
-            <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 mt-4 sm:mt-6 md:mt-8">
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                  <Grid className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div>
-                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-white">{events.length}</div>
-                  <div className="text-xs text-burgundy-200">Events</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                  <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div>
-                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-white">{eras.length}</div>
-                  <div className="text-xs text-burgundy-200">Eras</div>
-                </div>
-              </div>
-              <div className="flex items-center gap-2">
-                <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 backdrop-blur-sm rounded-lg flex items-center justify-center">
-                  <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-white" />
-                </div>
-                <div>
-                  <div className="text-lg sm:text-xl md:text-2xl font-bold text-white">{centuries.length}</div>
-                  <div className="text-xs text-burgundy-200">Centuries</div>
-                </div>
-              </div>
+    <div className="min-h-screen bg-slate-50 dark:bg-slate-900">
+     {/* Header with Gold Gradient */}
+<div className="relative overflow-hidden bg-gradient-to-br from-gold-500 via-gold-400 to-gold-600 dark:from-gold-600 dark:via-gold-500 dark:to-gold-700">
+  <div className="absolute inset-0 opacity-10">
+    <div className="absolute top-10 left-10 w-32 h-32 sm:w-48 sm:h-48 bg-white rounded-full blur-3xl"></div>
+    <div className="absolute bottom-10 right-10 w-40 h-40 sm:w-56 sm:h-56 bg-white rounded-full blur-3xl"></div>
+  </div>
+
+  <div className="relative container-max px-3 sm:px-4 py-6 sm:py-8 md:py-12 lg:py-16">
+    <div className="max-w-4xl">
+
+      {/* Main Title — Plum */}
+      <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-plum-800 mb-2 sm:mb-3 md:mb-4 leading-tight">
+        Historical Timeline
+      </h1>
+
+      {/* Description — Charcoal */}
+      <p className="text-xs sm:text-sm md:text-base text-charcoal/90 leading-relaxed max-w-3xl">
+        Explore the major events of Church history from the apostolic Church to the present.
+        Filter by era, browse by century, or select specific years to explore.
+      </p>
+
+      {/* Stats */}
+      <div className="flex flex-wrap gap-3 sm:gap-4 md:gap-6 mt-4 sm:mt-6 md:mt-8">
+
+        {/* Events */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/30 backdrop-blur-sm rounded-lg flex items-center justify-center border-2 border-white/20">
+            <Grid className="w-4 h-4 sm:w-5 sm:h-5 text-plum-800" />
+          </div>
+          <div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-charcoal">
+              {events.length}
+            </div>
+            <div className="text-xs text-forest-800/80">
+              Events
             </div>
           </div>
         </div>
+
+        {/* Eras */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/30 backdrop-blur-sm rounded-lg flex items-center justify-center border-2 border-white/20">
+            <Layers className="w-4 h-4 sm:w-5 sm:h-5 text-plum-800" />
+          </div>
+          <div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-charcoal">
+              {eras.length}
+            </div>
+            <div className="text-xs text-forest-800/80">
+              Eras
+            </div>
+          </div>
+        </div>
+
+        {/* Centuries */}
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 sm:w-10 sm:h-10 bg-white/30 backdrop-blur-sm rounded-lg flex items-center justify-center border-2 border-white/20">
+            <Calendar className="w-4 h-4 sm:w-5 sm:h-5 text-plum-800" />
+          </div>
+          <div>
+            <div className="text-lg sm:text-xl md:text-2xl font-bold text-charcoal">
+              {centuries.length}
+            </div>
+            <div className="text-xs text-forest-800/80">
+              Centuries
+            </div>
+          </div>
+        </div>
+
       </div>
-      
+    </div>
+  </div>
+</div>
+
       
       {/* Mobile Filter Toggle */}
       <div className="lg:hidden sticky top-0 z-20 bg-white dark:bg-navy-800 border-b-2 border-gray-200 dark:border-navy-700 px-4 py-3 shadow-md">
@@ -306,7 +328,7 @@ const TimelinePage: React.FC = () => {
       
       {/* Main Content */}
       <div className="container-max py-4 sm:py-6 md:py-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-4 sm:gap-6 lg:gap-8">
           {/* Desktop Filters Panel */}
           <div className="hidden lg:block">
             <div className="sticky top-4">
@@ -317,7 +339,7 @@ const TimelinePage: React.FC = () => {
           {/* Mobile Filters Panel */}
           {mobileFiltersOpen && (
             <div className="lg:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" onClick={() => setMobileFiltersOpen(false)}>
-              <div className="absolute inset-y-0 left-0 w-full max-w-sm bg-slate-50 dark:bg-navy-900 overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
+              <div className="absolute inset-y-0 left-0 w-full max-w-sm bg-slate-50 dark:bg-slate-900 overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
                 <div className="sticky top-0 z-10 bg-gradient-to-r from-gold-500 to-gold-400 border-b-2 border-gold-600 px-4 py-3 flex items-center justify-between shadow-md">
                   <div className="flex items-center gap-2">
                     <Filter className="w-5 h-5 text-navy-900" />
@@ -337,39 +359,51 @@ const TimelinePage: React.FC = () => {
             </div>
           )}
           
-          {/* Events Timeline */}
-          <div className="lg:col-span-3">
-            <div className="border-l-4 border-burgundy-600 dark:border-burgundy-400 bg-white dark:bg-navy-800 rounded-r-xl shadow-lg p-4 sm:p-6">
-              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3 mb-6">
-                <h2 className="text-xl sm:text-2xl font-serif text-navy-800 dark:text-navy-100 font-bold">
-                  {viewMode === 'all' && 'Complete Timeline'}
-                  {viewMode === 'century' && selectedCentury && `${selectedCentury}th Century`}
-                  {viewMode === 'year' && selectedYear && `Year ${selectedYear}`}
-                  {selectedEra !== 'all' && ` • ${eras.find(era => era.id === selectedEra)?.name}`}
-                </h2>
-                <div className="hidden lg:flex items-center gap-2 text-sm font-semibold text-navy-600 dark:text-navy-300 bg-gradient-to-r from-gray-100 to-gray-50 dark:from-navy-700 dark:to-navy-600 px-4 py-2 rounded-full shadow-sm">
+          {/* Events Timeline Section */}
+          <div className="flex-1">
+            {/* Header Card */}
+            <div className="mb-6">
+              <div className="flex flex-col sm:flex-row sm:justify-between sm:items-center gap-3">
+                <div>
+                  <h2 className="text-xl font-serif text-navy-800 dark:text-navy-100 font-bold mb-1">
+                    {viewMode === 'all' && 'Complete Timeline'}
+                    {viewMode === 'century' && selectedCentury && `${selectedCentury}th Century`}
+                    {viewMode === 'year' && selectedYear && `Year ${selectedYear}`}
+                  </h2>
+                  {selectedEra !== 'all' && (
+                    <p className="text-sm text-navy-600 dark:text-navy-400">
+                      {eras.find(era => era.id === selectedEra)?.name}
+                    </p>
+                  )}
+                </div>
+                <div className="flex items-center gap-2 text-sm font-semibold text-navy-700 dark:text-navy-300 bg-slate-100 dark:bg-navy-700 px-4 py-2 rounded-full">
                   <Filter size={14} />
-                  {filteredEvents.length} events
+                  {filteredEvents.length} {filteredEvents.length === 1 ? 'event' : 'events'}
                 </div>
               </div>
-              
-              {filteredEvents.length === 0 ? (
-                <div className="text-center py-16 text-navy-600 dark:text-navy-300">
-                  <div className="w-20 h-20 mx-auto mb-4 bg-gradient-to-br from-gray-100 to-gray-200 dark:from-navy-700 dark:to-navy-600 rounded-full flex items-center justify-center shadow-inner">
-                    <Filter className="w-10 h-10 text-gray-400 dark:text-navy-400" />
+            </div>
+
+            {/* Timeline Content Card */}
+            <div className="bg-white dark:bg-navy-800 rounded-xl shadow-md border border-navy-200 dark:border-navy-700 overflow-hidden">
+              <div className="p-5 sm:p-6">
+                {filteredEvents.length === 0 ? (
+                  <div className="text-center py-16 text-navy-600 dark:text-navy-300">
+                    <div className="w-20 h-20 mx-auto mb-4 bg-slate-100 dark:bg-navy-700 rounded-full flex items-center justify-center">
+                      <Filter className="w-10 h-10 text-navy-400 dark:text-navy-500" />
+                    </div>
+                    <p className="text-xl font-bold mb-2 text-navy-800 dark:text-navy-200">No events found</p>
+                    <p className="text-sm mb-6">Try adjusting your filters to see more results</p>
+                    <button
+                      className="px-6 py-3 bg-gradient-to-r from-gold-500 to-gold-600 hover:from-gold-600 hover:to-gold-700 text-navy-900 rounded-lg transition-all shadow-md hover:shadow-lg font-semibold"
+                      onClick={handleResetFilters}
+                    >
+                      Reset All Filters
+                    </button>
                   </div>
-                  <p className="text-xl font-bold mb-2">No events found</p>
-                  <p className="text-sm mb-6">Try adjusting your filters to see more results</p>
-                  <button
-                    className="px-6 py-3 bg-gradient-to-r from-burgundy-600 to-burgundy-700 hover:from-burgundy-700 hover:to-burgundy-800 text-white rounded-lg transition-all shadow-md hover:shadow-lg font-semibold"
-                    onClick={handleResetFilters}
-                  >
-                    Reset All Filters
-                  </button>
-                </div>
-              ) : (
-                <TimelineDisplay events={filteredEvents} />
-              )}
+                ) : (
+                  <TimelineDisplay events={filteredEvents} />
+                )}
+              </div>
             </div>
           </div>
         </div>

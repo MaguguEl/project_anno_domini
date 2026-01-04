@@ -5,7 +5,6 @@ import {
   Calendar, 
   Clock, 
   Users, 
-  FileText, 
   Library, 
   MessageSquare, 
   Home, 
@@ -23,16 +22,15 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
   
   const navItems = [
     { path: '/feed', icon: Home, label: 'Home' },
-    { path: '/figures', icon: Users, label: 'Figures' },
-    { path: '/documents', icon: FileText, label: 'Texts' },
     { path: '/timeline', icon: Clock, label: 'Timelines' },
+    { path: '/figures', icon: Users, label: 'Figures' },
+    { path: '/documents', icon: Library, label: 'Library' },
     { path: '/eras', icon: Calendar, label: 'Eras' },
     { path: '/quotes', icon: MessageSquare, label: 'Quotes' },
-    { path: '/sources', icon: Library, label: 'Sources' }
   ];
 
   const isActive = (path: string) => {
-    if (path === '/sources' && location.pathname.startsWith('/sources')) {
+    if (path === '/documents' && location.pathname.startsWith('/documents')) {
       return true;
     }
     if (path === '/quotes' && location.pathname.startsWith('/quotes')) {
@@ -43,8 +41,8 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
 
   return (
     <div 
-      className={`fixed inset-0 z-50 md:hidden transform transition-transform duration-300 ${
-        isOpen ? 'translate-x-0' : '-translate-x-full'
+      className={`fixed inset-0 z-50 md:hidden ${
+        isOpen ? 'block' : 'hidden'
       }`}
     >
       {/* Backdrop */}
@@ -54,25 +52,30 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
       />
       
       {/* Drawer */}
-      <div className="absolute inset-y-0 left-0 w-72 bg-white dark:bg-navy-800 border-r border-gray-200 dark:border-navy-700 shadow-xl">
+      <div 
+        className={`absolute inset-y-0 left-0 w-full max-w-xs bg-white dark:bg-navy-800 border-r border-gray-200 dark:border-navy-700 shadow-xl transform transition-transform duration-300 ease-in-out ${
+          isOpen ? 'translate-x-0' : '-translate-x-full'
+        }`}
+        onClick={(e) => e.stopPropagation()}
+      >
         <div className="h-full flex flex-col">
           {/* Header */}
-          <div className="p-6 border-b border-gray-200 dark:border-navy-700">
+          <div className="p-4 sm:p-6 border-b border-gray-200 dark:border-navy-700">
             <div className="flex items-center justify-between mb-4">
               <Link to="/" className="flex items-center gap-3" onClick={onClose}>
                 <Shield className="w-8 h-8 text-burgundy-700 dark:text-burgundy-300" />
-                <div>
-                  <h1 className="text-lg font-serif font-bold text-navy-800 dark:text-navy-100">
+                <div className="min-w-0">
+                  <h1 className="text-lg font-serif font-bold text-navy-800 dark:text-navy-100 truncate">
                     Anno Domini
                   </h1>
-                  <p className="text-xs text-navy-600 dark:text-navy-300">
+                  <p className="text-xs text-navy-600 dark:text-navy-300 truncate">
                     Church History Explorer
                   </p>
                 </div>
               </Link>
               <button
                 onClick={onClose}
-                className="p-2 hover:bg-gray-100 dark:hover:bg-navy-700 rounded-lg transition-colors"
+                className="p-2 hover:bg-gray-100 dark:hover:bg-navy-700 rounded-lg transition-colors flex-shrink-0"
                 aria-label="Close menu"
               >
                 <X className="w-5 h-5 text-navy-600 dark:text-navy-300" />
@@ -101,14 +104,13 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
                   key={path}
                   to={path}
                   onClick={onClose}
-                  className={`w-full flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-sm font-medium transition-colors ${
+                  className={`flex items-center gap-3 px-4 py-3 mx-2 my-1 rounded-lg text-sm font-medium transition-colors ${
                     active
-                      ? 'bg-burgundy-50 dark:bg-burgundy-900/30 text-burgundy-700 dark:text-burgundy-300'
-                      : 'text-navy-700 dark:text-navy-300 hover:bg-gray-100 dark:hover:bg-navy-700'
-                  }`}
+                     ? 'font-bold bg-active text-burgundy-700'
+                    : ' text-navy-700 hover:bg-active hover:text-burgundy-700'                  }`}
                 >
-                  <Icon className="w-5 h-5" />
-                  <span>{label}</span>
+                  <Icon className="w-5 h-5 flex-shrink-0" />
+                  <span className="truncate">{label}</span>
                 </Link>
               );
             })}
@@ -116,7 +118,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
           
           {/* Footer */}
           <div className="p-4 border-t border-gray-200 dark:border-navy-700">
-            <div className="text-xs text-navy-600 dark:text-navy-400 text-center">
+            <div className="text-xs text-navy-600 dark:text-navy-400 text-center truncate">
               © {new Date().getFullYear()} Anno Domini
             </div>
           </div>

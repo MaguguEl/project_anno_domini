@@ -5,8 +5,7 @@ import {
   Search, 
   Calendar, 
   Clock, 
-  Users, 
-  FileText, 
+  Users,  
   Library, 
   MessageSquare, 
   Home,
@@ -30,14 +29,16 @@ const Sidebar: React.FC<SidebarProps> = ({
     { path: '/feed', icon: Home, label: 'Home' },
     { path: '/timeline', icon: Clock, label: 'Timelines' },
     { path: '/figures', icon: Users, label: 'Figures' },
-    { path: '/documents', icon: FileText, label: 'Texts' },
+    { path: '/documents', icon: Library, label: 'Library' },
     { path: '/eras', icon: Calendar, label: 'Eras' },
     { path: '/quotes', icon: MessageSquare, label: 'Quotes' },
-    { path: '/sources', icon: Library, label: 'Sources' }
   ];
 
   const isActive = (path: string) => {
-    if (path === '/sources' && location.pathname.startsWith('/sources')) {
+    if (path === '/documents' && location.pathname.startsWith('/documents')) {
+      return true;
+    }
+    if (path === '/eras' && location.pathname.startsWith('/eras')) {
       return true;
     }
     if (path === '/quotes' && location.pathname.startsWith('/quotes')) {

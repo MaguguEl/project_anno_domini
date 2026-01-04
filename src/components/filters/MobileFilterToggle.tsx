@@ -15,7 +15,7 @@ const MobileFilterToggle: React.FC<MobileFilterToggleProps> = ({
   accentGradient = 'from-navy-600 to-navy-700'
 }) => {
   return (
-    <div className="md:hidden sticky top-0 z-20 bg-white dark:bg-navy-800 border-b-2 border-gray-200 dark:border-navy-700 shadow-md">
+    <div className="md:hidden top-0 z-20 bg-white dark:bg-navy-800 border-b-2 border-gray-200 dark:border-navy-700 shadow-md">
       <div className="container-max px-3 py-3">
         <button onClick={onToggle} className="flex items-center justify-between w-full">
           <div className="flex items-center gap-2">

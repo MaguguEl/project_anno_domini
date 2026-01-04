@@ -50,7 +50,7 @@ const MobileFilterDrawer: React.FC<MobileFilterDrawerProps> = ({
     <div className="md:hidden fixed inset-0 z-50 bg-black/60 backdrop-blur-sm" onClick={onClose}>
       <div className="absolute inset-y-0 left-0 w-full max-w-md bg-white dark:bg-navy-900 overflow-y-auto shadow-2xl" onClick={(e) => e.stopPropagation()}>
         {/* Drawer Header */}
-        <div className={`sticky top-0 z-10 bg-gradient-to-r ${accentGradient} px-4 py-4 shadow-lg`}>
+        <div className={`top-0 z-10 bg-gradient-to-r ${accentGradient} px-4 py-4 shadow-lg`}>
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2">
               <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-xl flex items-center justify-center">

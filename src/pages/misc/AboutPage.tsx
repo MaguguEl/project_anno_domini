@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { Mail, ExternalLink } from 'lucide-react';
 
 const AboutPage: React.FC = () => {
