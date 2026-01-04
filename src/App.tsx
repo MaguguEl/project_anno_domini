@@ -1,4 +1,3 @@
-import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { DataProvider } from './context/DataContext';
 import Layout from './components/layout/Layout';
@@ -13,10 +12,8 @@ import FigureDetailPage from './pages/figures/FigureDetailPage';
 import DocumentDetailPage from './pages/documents/DocumentDetailPage';
 import QuotesPage from './pages/quotes/QuotesPage';
 import QuoteDetailPage from './pages/quotes/QuoteDetailPage';
-import SourcesPage from './pages/sources/SourcesPage';
-import SourceCategoryPage from './pages/sources/SourceCategoryPage';
-import SourceDetailPage from './pages/sources/SourceDetailPage';
-import ExternalLinksPage from './pages/sources/ExternalLinksPage';
+import SourcePage from './pages/documents/SourcePage';
+import SourceDetailPage from './pages/documents/SourceDetailPage';
 import BookmarksPage from './pages/sources/BookmarksPage';
 import AboutPage from './pages/misc/AboutPage';
 import PrivacyPage from './pages/misc/PrivacyPage';
@@ -30,28 +27,46 @@ function App() {
       <Router>
         <Layout>
           <Routes>
+            {/* Main Pages */}
             <Route path="/" element={<HomePage />} />
             <Route path="/feed" element={<HistoryFeedPage />} />
             <Route path="/timeline" element={<TimelinePage />} />
             <Route path="/figures" element={<FiguresPage />} />
+            
+            {/* Documents & Sources Page */}
             <Route path="/documents" element={<DocumentsPage />} />
+            <Route path="/sources" element={<DocumentsPage />} />
+            
+            {/* Eras */}
             <Route path="/eras" element={<ErasPage />} />
             <Route path="/eras/:id" element={<EraDetailPage />} />
+            
+            {/* Detail Pages */}
             <Route path="/events/:id" element={<EventDetailPage />} />
             <Route path="/figures/:id" element={<FigureDetailPage />} />
             <Route path="/documents/:id" element={<DocumentDetailPage />} />
+            
+            {/* Quotes */}
             <Route path="/quotes" element={<QuotesPage />} />
             <Route path="/quotes/:id" element={<QuoteDetailPage />} />
-            <Route path="/sources" element={<SourcesPage />} />
-            <Route path="/sources/:category" element={<SourceCategoryPage />} />
+            
+            {/* Source Categories and Details */}
+            <Route path="/sources/:category" element={<SourcePage />} />
             <Route path="/sources/view/:id" element={<SourceDetailPage />} />
-            <Route path="/sources/topic/:topic" element={<SourceCategoryPage />} />
-            <Route path="/sources/external" element={<ExternalLinksPage />} />
+            <Route path="/sources/topic/:topic" element={<SourcePage />} />
+            
+            {/* Source Features - these still route to DocumentsPage but with sources tab active */}
             <Route path="/sources/bookmarks" element={<BookmarksPage />} />
+            <Route path="/sources/search" element={<DocumentsPage />} />
+            <Route path="/sources/recent" element={<DocumentsPage />} />
+            <Route path="/sources/topics" element={<DocumentsPage />} />
+            
+            {/* Misc Pages */}
             <Route path="/about" element={<AboutPage />} />
             <Route path="/privacy" element={<PrivacyPage />} />
             <Route path="/terms" element={<TermsPage />} />
             
+            {/* 404 */}
             <Route path="*" element={<NotFoundPage />} />
           </Routes>
         </Layout>

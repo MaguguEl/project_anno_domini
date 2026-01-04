@@ -26,7 +26,8 @@ And in the Holy Ghost.`,
     type: 'creed',
     category: 'primary',
     tags: ['creed', 'trinity', 'council', 'arianism', 'doctrine'],
-    summary: 'The foundational creed establishing the doctrine of the Trinity and Christ\'s divinity, formulated to counter Arianism.'
+    summary: 'The foundational creed establishing the doctrine of the Trinity and Christ\'s divinity, formulated to counter Arianism.',
+    significance: 'Established the orthodox doctrine of the Trinity and Christ\'s full divinity, becoming the standard creed for most Christian denominations.'
   },
   {
     id: 'apostles-creed',
@@ -64,7 +65,8 @@ and the life everlasting. Amen.`,
     type: 'creed',
     category: 'primary',
     tags: ['creed', 'early church', 'belief', 'baptism', 'doctrine'],
-    summary: 'An early statement of Christian belief, traditionally attributed to the apostles but developed over several centuries.'
+    summary: 'An early statement of Christian belief, traditionally attributed to the apostles but developed over several centuries.',
+    significance: 'Became the most widely accepted statement of Christian faith across denominations, used in baptism and worship services.'
   },
   {
     id: 'chalcedon-definition',
@@ -83,11 +85,12 @@ and the life everlasting. Amen.`,
     type: 'creed',
     category: 'primary',
     tags: ['christology', 'council', 'two natures', 'monophysitism', 'orthodox', 'doctrine'],
-    summary: 'Defines the two natures of Christ - fully human and fully divine - in response to Monophysite controversies.'
+    summary: 'Defines the two natures of Christ - fully human and fully divine - in response to Monophysite controversies.',
+    significance: 'Established the orthodox understanding of Christ\'s nature, influencing all subsequent Christian theology on the Incarnation.'
   },
   {
-    id: 'augustine-confessions-excerpt',
-    title: 'Confessions (Excerpt)',
+    id: 'augustine-confessions',
+    title: 'Confessions',
     author: 'Augustine of Hippo',
     date: '400-01-01',
     year: 400,
@@ -106,7 +109,8 @@ Grant me, O Lord, to know and understand whether a man is first to pray to Thee 
     type: 'book',
     category: 'theological',
     tags: ['autobiography', 'conversion', 'spirituality', 'philosophy', 'prayer', 'restlessness'],
-    summary: 'Augustine\'s autobiographical work detailing his conversion and spiritual journey, considered the first Western autobiography.'
+    summary: 'Augustine\'s autobiographical work detailing his conversion and spiritual journey, considered the first Western autobiography.',
+    significance: 'Revolutionized Christian spirituality and established psychological introspection as a spiritual discipline in Western Christianity.'
   },
   {
     id: 'rule-of-benedict',
@@ -129,7 +133,8 @@ First of all, every time you begin a good work, you must pray to him most earnes
     type: 'treatise',
     category: 'primary',
     tags: ['monasticism', 'discipline', 'spiritual life', 'obedience', 'community'],
-    summary: 'Foundational monastic rule shaping Western monasticism and medieval Christian life.'
+    summary: 'Foundational monastic rule shaping Western monasticism and medieval Christian life.',
+    significance: 'Created the framework for Western monasticism that preserved learning and civilization through the Middle Ages.'
   },
   {
     id: 'anselm-proslogion',
@@ -152,7 +157,8 @@ For, it is one thing for an object to be in the understanding, and another to un
     type: 'treatise',
     category: 'theological',
     tags: ['ontological argument', 'philosophy', 'faith and reason', 'scholasticism', 'medieval theology'],
-    summary: 'Anselm\'s work containing the ontological argument for God\'s existence, demonstrating the medieval synthesis of faith and reason.'
+    summary: 'Anselm\'s work containing the ontological argument for God\'s existence, demonstrating the medieval synthesis of faith and reason.',
+    significance: 'Introduced a new philosophical approach to theology that influenced centuries of Christian thought about the relationship between faith and reason.'
   },
   {
     id: 'aquinas-summa-excerpt',
@@ -179,7 +185,8 @@ Therefore it is necessary to arrive at a first mover, put in motion by no other;
     type: 'treatise',
     category: 'theological',
     tags: ['scholasticism', 'theology', 'philosophy', 'five ways', 'aristotle', 'natural theology'],
-    summary: 'Comprehensive theological work synthesizing Christian doctrine with Aristotelian philosophy.'
+    summary: 'Comprehensive theological work synthesizing Christian doctrine with Aristotelian philosophy.',
+    significance: 'Became the definitive theological work of Catholicism, establishing Thomism as a major school of thought.'
   },
   {
     id: 'luther-95-theses-excerpt',
@@ -208,7 +215,8 @@ Therefore it is necessary to arrive at a first mover, put in motion by no other;
     type: 'thesis',
     category: 'primary',
     tags: ['reformation', 'indulgences', 'protestantism', 'luther', 'critique', 'church reform'],
-    summary: 'Luther\'s theses challenging the practice of selling indulgences, sparking the Protestant Reformation.'
+    summary: 'Luther\'s theses challenging the practice of selling indulgences, sparking the Protestant Reformation.',
+    significance: 'Ignited the Protestant Reformation, fundamentally changing Western Christianity and European society.'
   },
   {
     id: 'augsburg-confession',
@@ -231,7 +239,8 @@ Also they teach that men cannot be justified before God by their own strength, m
     type: 'confession',
     category: 'primary',
     tags: ['lutheran', 'confession', 'justification', 'faith', 'protestant', 'reformation'],
-    summary: 'Primary confession of faith of the Lutheran Church, establishing key Protestant doctrines like justification by faith.'
+    summary: 'Primary confession of faith of the Lutheran Church, establishing key Protestant doctrines like justification by faith.',
+    significance: 'Became the defining doctrinal statement of Lutheranism and a model for Protestant confessions of faith.'
   },
   {
     id: 'westminster-confession',
@@ -254,55 +263,8 @@ II. Under the name of Holy Scripture, or the Word of God written, are now contai
     type: 'confession',
     category: 'primary',
     tags: ['presbyterian', 'reformed', 'scripture', 'systematic theology', 'puritan'],
-    summary: 'Doctrinal standard for Presbyterian churches, representing Reformed theology at its most systematic.'
-  },
-  {
-    id: 'barmen-declaration',
-    title: 'Barmen Declaration (Excerpt)',
-    author: 'Confessing Church',
-    date: '1934-05-31',
-    year: 1934,
-    context: 'The Barmen Declaration was a statement of faith adopted by the Confessing Church in Germany in opposition to the Nazi-influenced "German Christians" movement. It affirmed the independence of the church from state ideology.',
-    content: `Jesus Christ, as he is attested for us in Holy Scripture, is the one Word of God which we have to hear and which we have to trust and obey in life and in death.
-
-We reject the false doctrine, as though the church could and would have to acknowledge as a source of its proclamation, apart from and besides this one Word of God, still other events and powers, figures and truths, as God's revelation.
-
-We reject the false doctrine, as though there were areas of our life in which we would not belong to Jesus Christ, but to other masters—areas in which we would not need justification and sanctification through him.
-
-The Christian Church is the congregation of the brethren in which Jesus Christ acts presently as the Lord in Word and sacrament through the Holy Spirit. As the Church of pardoned sinners, it has to testify in the midst of a sinful world, with its faith as with its obedience, with its message as with its order, that it is solely his property, and that it lives and wants to live solely from his comfort and from his direction in the expectation of his appearance.`,
-    events: ['barmen-synod'],
-    people: ['karl-barth', 'dietrich-bonhoeffer'],
-    era: { id: 'modern', name: 'Modern Church', startYear: 1648, endYear: 2025, volume: 8, description: '', events: [], figures: [], documents: [] },
-    externalUrl: 'https://bookofconcord.org/barmen-declaration/',
-    hostedOn: 'Book of Concord',
-    downloadFormats: ['pdf', 'txt'],
-    type: 'declaration',
-    category: 'primary',
-    tags: ['confessing church', 'nazi germany', 'christ alone', 'church independence', 'barth', 'bonhoeffer'],
-    summary: 'Statement of faith opposing Nazi ideology, affirming Christ as the sole authority over the church.'
-  },
-  {
-    id: 'lausanne-covenant',
-    title: 'Lausanne Covenant (Excerpt)',
-    author: 'Lausanne Committee',
-    date: '1974-07-01',
-    year: 1974,
-    context: 'The Lausanne Covenant emerged from the International Congress on World Evangelization and became a defining document for evangelical Christianity, emphasizing both evangelism and social responsibility.',
-    content: `We affirm our belief in the one-eternal God, Creator and Lord of the world, Father, Son and Holy Spirit, who governs all things according to the purpose of his will. He has been calling out from the world a people for himself, and sending his people back into the world to be his servants and his witnesses, for the extension of his kingdom, the building up of Christ's body, and the glory of his name.
-
-We affirm that God is both the Creator and the Judge of all men. We therefore should share his concern for justice and reconciliation throughout human society and for the liberation of men and women from every kind of oppression. Because men and women are made in the image of God, every person, regardless of race, religion, colour, culture, class, sex or age, has an intrinsic dignity because of which he or she should be respected and served, not exploited.
-
-Here too we express penitence both for our neglect and for having sometimes regarded evangelism and social concern as mutually exclusive. Although reconciliation with man is not reconciliation with God, nor is social action evangelism, nor is political liberation salvation, nevertheless we affirm that evangelism and socio-political involvement are both part of our Christian duty.`,
-    events: ['lausanne-congress'],
-    people: ['john-stott', 'billy-graham'],
-    era: { id: 'modern', name: 'Modern Church', startYear: 1648, endYear: 2025, volume: 8, description: '', events: [], figures: [], documents: [] },
-    externalUrl: 'https://www.lausanne.org/content/covenant/lausanne-covenant',
-    hostedOn: 'Lausanne Movement',
-    downloadFormats: ['pdf'],
-    type: 'covenant',
-    category: 'primary',
-    tags: ['evangelical', 'evangelism', 'social justice', 'mission', 'global christianity'],
-    summary: 'Defining document for evangelical Christianity, emphasizing both evangelism and social responsibility.'
+    summary: 'Doctrinal standard for Presbyterian churches, representing Reformed theology at its most systematic.',
+    significance: 'Became the most influential Reformed confession in the English-speaking world, shaping Presbyterian and Reformed theology.'
   },
   {
     id: 'didache',
@@ -327,7 +289,8 @@ Abstain from fleshly and bodily lusts. If someone strikes you on your right chee
     type: 'treatise',
     category: 'primary',
     tags: ['early church', 'church order', 'ethics', 'apostolic', 'teaching'],
-    summary: 'Early Christian treatise on church order and Christian ethics, one of the earliest Christian documents outside the New Testament.'
+    summary: 'Early Christian treatise on church order and Christian ethics, one of the earliest Christian documents outside the New Testament.',
+    significance: 'Provides crucial insight into early Christian community life, worship, and ethical teachings in the first century.'
   },
   {
     id: 'first-clement',
@@ -350,7 +313,8 @@ Let us therefore put on unity of mind, thinking humble thoughts, exercising self
     type: 'letter',
     category: 'primary',
     tags: ['apostolic fathers', 'corinth', 'church unity', 'early letter', 'clement'],
-    summary: 'Early Christian letter addressing church divisions and emphasizing unity and apostolic succession.'
+    summary: 'Early Christian letter addressing church divisions and emphasizing unity and apostolic succession.',
+    significance: 'Demonstrates early church leadership and concern for unity, providing evidence of Roman church authority in the first century.'
   },
   {
     id: 'athanasius-incarnation',
@@ -371,7 +335,8 @@ For the Word perceived that not otherwise could the corruption of human beings b
     type: 'treatise',
     category: 'theological',
     tags: ['christology', 'incarnation', 'arianism', 'defense', 'orthodoxy'],
-    summary: 'Classic defense of the incarnation and divinity of Christ against Arianism.'
+    summary: 'Classic defense of the incarnation and divinity of Christ against Arianism.',
+    significance: 'Played a crucial role in defending Nicene orthodoxy and articulating the doctrine of Christ\'s full divinity.'
   }
 ];
 

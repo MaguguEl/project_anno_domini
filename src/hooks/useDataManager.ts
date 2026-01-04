@@ -40,6 +40,14 @@ import {
   getSourcesByCentury,
   getAllTags
 } from '../data/federatedSources';
+import { 
+  categories,
+  getCategoryById,
+  getCategoryGradient,
+  getCategoryDisplayName,
+  getCategoryDescription,
+  type Category
+} from '../data/categories';
 
 // Define the search results interface
 interface SearchResults {
@@ -67,6 +75,13 @@ export interface UseDataManagerReturn {
   documents: Document[];
   events: Event[];
   federatedSources: FederatedSource[];
+  
+  // Category data and utilities
+  categories: Category[];
+  getCategoryById: (id: string) => Category | undefined;
+  getCategoryGradient: (categoryId: string) => string;
+  getCategoryDisplayName: (categoryId: string) => string;
+  getCategoryDescription: (categoryId: string) => string;
   
   // Era utilities
   getEraById: (id: string) => Era | undefined;
@@ -131,66 +146,6 @@ export interface UseDataManagerReturn {
 }
 
 export const useDataManager = (): UseDataManagerReturn => {
-  // Memoize the relationship cache for better performance
-  const relationshipCache = useMemo(() => {
-    const cache = new Map<string, any>();
-    
-    // Pre-build era relationships
-    const eraRelationships = new Map<string, any>();
-    eras.forEach(era => {
-      const eraFigures = getFiguresByEra(era.id);
-      const eraDocuments = getDocumentsByEra(era.id);
-      const eraEvents = getEventsByEra(era.id);
-      
-      eraRelationships.set(era.id, {
-        figures: eraFigures,
-        documents: eraDocuments,
-        events: eraEvents
-      });
-      
-      // Cache figure relationships
-      eraFigures.forEach(figure => {
-        const key = `figure-${figure.id}`;
-        if (!cache.has(key)) {
-          cache.set(key, {
-            events: figure.events.map(id => getEventById(id)).filter(Boolean),
-            documents: figure.documents.map(id => getDocumentById(id)).filter(Boolean),
-            quotes: figure.quotes || []
-          });
-        }
-      });
-      
-      // Cache document relationships
-      eraDocuments.forEach(doc => {
-        const key = `document-${doc.id}`;
-        if (!cache.has(key)) {
-          const era = getEraById(doc.era.id);
-          cache.set(key, {
-            era: era,
-            people: doc.people.map(id => getFigureById(id)).filter(Boolean),
-            events: doc.events.map(id => getEventById(id)).filter(Boolean)
-          });
-        }
-      });
-      
-      // Cache event relationships
-      eraEvents.forEach(event => {
-        const key = `event-${event.id}`;
-        if (!cache.has(key)) {
-          const era = getEraById(event.era.id);
-          cache.set(key, {
-            era: era,
-            relatedPeople: event.relatedPeople.map(id => getFigureById(id)).filter(Boolean),
-            relatedDocuments: event.relatedDocuments.map(id => getDocumentById(id)).filter(Boolean)
-          });
-        }
-      });
-    });
-    
-    cache.set('era-relationships', eraRelationships);
-    return cache;
-  }, []);
-
   const getRelatedEntities = (entityType: 'figure' | 'document' | 'event' | 'era', entityId: string) => {
     const result: any = {};
     
@@ -330,7 +285,8 @@ export const useDataManager = (): UseDataManagerReturn => {
       sources: federatedSources.filter(source =>
         source.title.toLowerCase().includes(searchTerm) ||
         source.summary.toLowerCase().includes(searchTerm) ||
-        source.tags.some(tag => tag.toLowerCase().includes(searchTerm))
+        source.tags.some(tag => tag.toLowerCase().includes(searchTerm)) ||
+        getCategoryDisplayName(source.category).toLowerCase().includes(searchTerm)
       )
     };
     
@@ -344,18 +300,14 @@ export const useDataManager = (): UseDataManagerReturn => {
     totalFigures: figures.length,
     totalDocuments: documents.length,
     totalEvents: events.length,
-    totalSources: federatedSources.length
+    totalSources: federatedSources.length,
+    totalCategories: categories.length
   });
 
   const validateData = () => {
-    console.log('Validating data relationships...');
-    
     // Validate era characteristics
     eras.forEach(era => {
       const errors = validateEraCharacteristics(era.id);
-      if (errors.length > 0) {
-        console.warn(`Era ${era.id} validation errors:`, errors);
-      }
     });
     
     // Validate cross-references
@@ -375,11 +327,13 @@ export const useDataManager = (): UseDataManagerReturn => {
       });
     });
     
-    if (crossRefErrors.length > 0) {
-      console.warn('Cross-reference validation errors:', crossRefErrors);
-    }
-    
-    console.log('Data validation complete');
+    // Validate that all sources have valid categories
+    federatedSources.forEach(source => {
+      const category = getCategoryById(source.category);
+      if (!category) {
+        crossRefErrors.push(`Source "${source.title}" has invalid category: ${source.category}`);
+      }
+    });
   };
 
   return {
@@ -389,6 +343,13 @@ export const useDataManager = (): UseDataManagerReturn => {
     documents,
     events,
     federatedSources,
+    
+    // Category data and utilities
+    categories,
+    getCategoryById,
+    getCategoryGradient,
+    getCategoryDisplayName,
+    getCategoryDescription,
     
     // Era utilities
     getEraById,

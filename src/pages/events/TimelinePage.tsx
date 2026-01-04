@@ -240,7 +240,7 @@ const TimelinePage: React.FC = () => {
 
       {/* Main Title — Plum */}
       <h1 className="text-2xl sm:text-3xl md:text-4xl font-serif font-bold text-plum-800 mb-2 sm:mb-3 md:mb-4 leading-tight">
-        Historical Timeline
+        Timelines
       </h1>
 
       {/* Description — Charcoal */}

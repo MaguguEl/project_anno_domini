@@ -9,7 +9,7 @@ const HeroSection = () => {
   const navButtons = [
     {
       icon: <Home className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7" />,
-      title: 'Home',
+      title: 'Feed',
       to: '/feed'
     },
     {

@@ -8,7 +8,6 @@ import {
   BookmarkPlus, 
   Users, 
   Calendar, 
-  Tag, 
   Globe, 
   FileText, 
   Check,

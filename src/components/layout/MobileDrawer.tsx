@@ -21,7 +21,7 @@ const MobileDrawer: React.FC<MobileDrawerProps> = ({ isOpen, onClose }) => {
   const location = useLocation();
   
   const navItems = [
-    { path: '/feed', icon: Home, label: 'Home' },
+    { path: '/feed', icon: Home, label: 'Feed' },
     { path: '/timeline', icon: Clock, label: 'Timelines' },
     { path: '/figures', icon: Users, label: 'Figures' },
     { path: '/documents', icon: Library, label: 'Library' },

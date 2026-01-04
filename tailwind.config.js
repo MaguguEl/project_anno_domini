@@ -5,13 +5,29 @@ export default {
   theme: {
     extend: {
       colors: {
-        // Custom colors from your palette
-        'deep-red': '#770000',
-        'primary-red': '#8B0000',
-        'light-red': '#D42E2E',
-        'pale-red': '#EE7171',
-        'soft-red': '#FDE4E4',
-        'softest-red': '#FDF2F2',
+       /* ---------------------------------
+         * Header / Editorial Colors
+         * --------------------------------- */
+
+        charcoal: {
+          DEFAULT: '#1F2937', // primary header text
+          dark: '#111827',
+          light: '#374151',
+        },
+
+        plum: {
+          DEFAULT: '#3B1C32', // deep plum
+          700: '#4A2038',
+          800: '#3B1C32',
+          900: '#2A1423',
+        },
+
+        forest: {
+          DEFAULT: '#0F3D2E', // forest green
+          700: '#145C45',
+          800: '#0F3D2E',
+          900: '#0B2A20',
+        },
         
         'navy-dark': '#14213D',
         'navy-medium': '#253C63',
@@ -28,6 +44,8 @@ export default {
         'sky-blue': '#C2D3E3',
         'parchment': '#EBE9E1',
         'parchment-light': '#F7F4EF',
+        'active': '#E2E0D8',
+        'hover': '#D7D5CD',
         
         // Theme color scales
         burgundy: {
