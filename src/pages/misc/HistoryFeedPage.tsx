@@ -973,7 +973,14 @@ const HistoryFeedPage: React.FC = () => {
                   </div>
                   <div className="pt-2">
                     <p className="text-xs text-gray-500 dark:text-gray-400">
-                      © new Date().getFullYear() Anno Domini. All rights reserved.
+                      © {new Date().getFullYear()} {" "}
+                      <Link
+                        to="/"
+                        className="text-gray-600 dark:text-burgundy-400 hover:text-burgundy-700 dark:hover:text-burgundy-300 transition-colors"
+                      >
+                        Anno Domini
+                      </Link>
+                      . All rights reserved.
                     </p>
                   </div>
                 </div>

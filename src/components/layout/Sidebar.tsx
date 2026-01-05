@@ -58,7 +58,7 @@ const Sidebar: React.FC<SidebarProps> = ({
               Anno Domini
             </h1>
             <p className="text-xs text-navy-600 dark:text-navy-300">
-              Church History
+              Ecclesiastical History
             </p>
           </div>
         </Link>
