@@ -20,7 +20,7 @@ const Footer: React.FC = () => {
               </Link>
               <span className="text-gray-600 dark:text-gray-400">•</span>
               <span className="text-gray-600 dark:text-gray-400">
-                Powered by{' '}
+                Crafted with honor{' '}
                 <a 
                   href="https://maguguel.netlify.app/" 
                   target="_blank" 
